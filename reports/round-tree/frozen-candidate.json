@@ -1,0 +1,12 @@
+{
+  "candidate": {
+    "family": "tree",
+    "hours": 4,
+    "fast": 10,
+    "slow": 60,
+    "stop_atr": 3.0,
+    "reward_r": 3.0
+  },
+  "key": "tree_4h_10_60_atr3_r3",
+  "frozen_at": "2026-09-12T17:29:43.200801+00:00"
+}

@@ -1,0 +1,390 @@
+{
+  "frozen_at": "2026-09-12T15:57:13.843969+00:00",
+  "count": 48,
+  "candidates": [
+    {
+      "family": "ema",
+      "hours": 1,
+      "fast": 10,
+      "slow": 50,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "ema",
+      "hours": 1,
+      "fast": 10,
+      "slow": 50,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "ema",
+      "hours": 1,
+      "fast": 20,
+      "slow": 50,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "ema",
+      "hours": 1,
+      "fast": 20,
+      "slow": 50,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "ema",
+      "hours": 1,
+      "fast": 20,
+      "slow": 100,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "ema",
+      "hours": 1,
+      "fast": 20,
+      "slow": 100,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "ema",
+      "hours": 1,
+      "fast": 50,
+      "slow": 200,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "ema",
+      "hours": 1,
+      "fast": 50,
+      "slow": 200,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "ema",
+      "hours": 4,
+      "fast": 10,
+      "slow": 50,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "ema",
+      "hours": 4,
+      "fast": 10,
+      "slow": 50,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "ema",
+      "hours": 4,
+      "fast": 20,
+      "slow": 50,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "ema",
+      "hours": 4,
+      "fast": 20,
+      "slow": 50,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "ema",
+      "hours": 4,
+      "fast": 20,
+      "slow": 100,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "ema",
+      "hours": 4,
+      "fast": 20,
+      "slow": 100,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "ema",
+      "hours": 4,
+      "fast": 50,
+      "slow": 200,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "ema",
+      "hours": 4,
+      "fast": 50,
+      "slow": 200,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "breakout",
+      "hours": 1,
+      "fast": 20,
+      "slow": 10,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "breakout",
+      "hours": 1,
+      "fast": 20,
+      "slow": 10,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "breakout",
+      "hours": 1,
+      "fast": 40,
+      "slow": 20,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "breakout",
+      "hours": 1,
+      "fast": 40,
+      "slow": 20,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "breakout",
+      "hours": 1,
+      "fast": 80,
+      "slow": 40,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "breakout",
+      "hours": 1,
+      "fast": 80,
+      "slow": 40,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "breakout",
+      "hours": 1,
+      "fast": 120,
+      "slow": 60,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "breakout",
+      "hours": 1,
+      "fast": 120,
+      "slow": 60,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "breakout",
+      "hours": 4,
+      "fast": 20,
+      "slow": 10,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "breakout",
+      "hours": 4,
+      "fast": 20,
+      "slow": 10,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "breakout",
+      "hours": 4,
+      "fast": 40,
+      "slow": 20,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "breakout",
+      "hours": 4,
+      "fast": 40,
+      "slow": 20,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "breakout",
+      "hours": 4,
+      "fast": 80,
+      "slow": 40,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "breakout",
+      "hours": 4,
+      "fast": 80,
+      "slow": 40,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "breakout",
+      "hours": 4,
+      "fast": 120,
+      "slow": 60,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "breakout",
+      "hours": 4,
+      "fast": 120,
+      "slow": 60,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "rsi_pullback",
+      "hours": 1,
+      "fast": 7,
+      "slow": 25,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "rsi_pullback",
+      "hours": 1,
+      "fast": 7,
+      "slow": 25,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "rsi_pullback",
+      "hours": 1,
+      "fast": 14,
+      "slow": 30,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "rsi_pullback",
+      "hours": 1,
+      "fast": 14,
+      "slow": 30,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "rsi_pullback",
+      "hours": 1,
+      "fast": 14,
+      "slow": 35,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "rsi_pullback",
+      "hours": 1,
+      "fast": 14,
+      "slow": 35,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "rsi_pullback",
+      "hours": 1,
+      "fast": 21,
+      "slow": 35,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "rsi_pullback",
+      "hours": 1,
+      "fast": 21,
+      "slow": 35,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "rsi_pullback",
+      "hours": 4,
+      "fast": 7,
+      "slow": 25,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "rsi_pullback",
+      "hours": 4,
+      "fast": 7,
+      "slow": 25,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "rsi_pullback",
+      "hours": 4,
+      "fast": 14,
+      "slow": 30,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "rsi_pullback",
+      "hours": 4,
+      "fast": 14,
+      "slow": 30,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "rsi_pullback",
+      "hours": 4,
+      "fast": 14,
+      "slow": 35,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "rsi_pullback",
+      "hours": 4,
+      "fast": 14,
+      "slow": 35,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "rsi_pullback",
+      "hours": 4,
+      "fast": 21,
+      "slow": 35,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "rsi_pullback",
+      "hours": 4,
+      "fast": 21,
+      "slow": 35,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    }
+  ]
+}

@@ -67,7 +67,7 @@ export default function RegisterPage() {
       localStorage.setItem('refresh_token', tokens.refresh_token);
       const user = await getMe();
       setUser(user);
-      navigate('/dashboard');
+      navigate('/');
     } catch (err: any) {
       const detail = err.response?.data?.detail;
       if (Array.isArray(detail)) {

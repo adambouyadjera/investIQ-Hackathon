@@ -1,0 +1,11 @@
+{
+  "frozen_at": "2026-09-12T17:24:34.911957+00:00",
+  "selection": "Best training score per original family after 60 trades, >50% profitable training quarters, <8% training DD, positive training net return.",
+  "selected_keys": [
+    "ema_1h_50_200_atr3",
+    "breakout_4h_40_20_atr3"
+  ],
+  "validation_reused": true,
+  "holdout_accessed": false,
+  "new_parameter_configurations": 0
+}

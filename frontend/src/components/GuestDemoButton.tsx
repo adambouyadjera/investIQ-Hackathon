@@ -23,7 +23,7 @@ export function GuestDemoButton({ className = '' }: { className?: string }) {
       localStorage.setItem('access_token', tokens.access_token);
       localStorage.setItem('refresh_token', tokens.refresh_token);
       setUser(await getMe());
-      navigate('/dashboard');
+      navigate('/');
     } catch {
       setError('Could not start the demo. Is the backend running on port 8000?');
       setLoading(false);

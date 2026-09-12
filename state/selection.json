@@ -1,0 +1,25 @@
+{
+  "mode": "paper",
+  "eligible": false,
+  "candidate": null,
+  "research_candidate": {
+    "family": "breakout",
+    "hours": 4,
+    "fast": 20,
+    "slow": 10,
+    "stop_atr": 2.0,
+    "reward_r": 2.0
+  },
+  "reason": "Frozen candidate failed chronological validation. Final holdout remains sealed.",
+  "gates": {
+    "positive_return": false,
+    "profit_factor_at_least_1_10": false,
+    "sufficient_trades": true,
+    "drawdown_below_10pct": true,
+    "no_risk_stop": true,
+    "positive_under_double_costs": false,
+    "majority_positive_quarters": false
+  },
+  "decided_at": "2026-09-12T16:11:54.162659+00:00",
+  "live_execution_enabled": false
+}

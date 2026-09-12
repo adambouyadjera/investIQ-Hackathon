@@ -1,0 +1,13 @@
+{
+  "method": "CSCV-style diagnostic on 12 development calendar-quarter returns with mean-return selection",
+  "not_a_forecast": true,
+  "not_the_original_selection_score": true,
+  "trials": 70,
+  "partitions": 924,
+  "fraction_winner_below_other_half_median": 0.33874458874458874,
+  "median_other_half_rank": 0.5928571428571429,
+  "average_in_sample_quarter_return": 0.010697609956639806,
+  "average_other_half_quarter_return": -0.0005043722428641473,
+  "limitations": "Only 12 quarters; chronological dependence, flat quarter starts, reused public history and different scoring limit inference. This does not establish future profitability or a calibrated probability for the deployed process.",
+  "holdout_accessed": false
+}

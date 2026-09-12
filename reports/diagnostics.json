@@ -1,0 +1,828 @@
+{
+  "candidate": {
+    "family": "breakout",
+    "hours": 4,
+    "fast": 20,
+    "slow": 10,
+    "stop_atr": 2.0,
+    "reward_r": 2.0
+  },
+  "cost_sensitivity": [
+    {
+      "multiplier": 0,
+      "net_return": 0.00834486787591504,
+      "final_equity": 10083.44867875915,
+      "max_drawdown": 0.04612320667966341,
+      "trades": 55,
+      "win_rate": 0.3090909090909091,
+      "profit_factor": 1.0538305903358862,
+      "fees": 0.0,
+      "daily_sharpe": 0.17338239175905196,
+      "exposure": 0.27985347985347986,
+      "halted": false,
+      "start": "2025-01-01T00:00:00+00:00",
+      "end": "2026-03-31T20:00:00+00:00",
+      "bars": 2730
+    },
+    {
+      "multiplier": 0.5,
+      "net_return": -0.01479756352650452,
+      "final_equity": 9852.024364734954,
+      "max_drawdown": 0.055190887732713745,
+      "trades": 56,
+      "win_rate": 0.30357142857142855,
+      "profit_factor": 0.9076613251968683,
+      "fees": 116.81747455371206,
+      "daily_sharpe": -0.2728411313003685,
+      "exposure": 0.26776556776556776,
+      "halted": false,
+      "start": "2025-01-01T00:00:00+00:00",
+      "end": "2026-03-31T20:00:00+00:00",
+      "bars": 2730
+    },
+    {
+      "multiplier": 1,
+      "net_return": -0.03023704533551519,
+      "final_equity": 9697.629546644848,
+      "max_drawdown": 0.06425968159310347,
+      "trades": 55,
+      "win_rate": 0.3090909090909091,
+      "profit_factor": 0.804983660388432,
+      "fees": 212.43326400840385,
+      "daily_sharpe": -0.6209286919460271,
+      "exposure": 0.2681318681318681,
+      "halted": false,
+      "start": "2025-01-01T00:00:00+00:00",
+      "end": "2026-03-31T20:00:00+00:00",
+      "bars": 2730
+    },
+    {
+      "multiplier": 1.5,
+      "net_return": -0.041966883752341144,
+      "final_equity": 9580.331162476588,
+      "max_drawdown": 0.07047579333325193,
+      "trades": 55,
+      "win_rate": 0.3090909090909091,
+      "profit_factor": 0.7282358429581479,
+      "fees": 298.2148515062995,
+      "daily_sharpe": -0.9266712686211782,
+      "exposure": 0.2681318681318681,
+      "halted": false,
+      "start": "2025-01-01T00:00:00+00:00",
+      "end": "2026-03-31T20:00:00+00:00",
+      "bars": 2730
+    },
+    {
+      "multiplier": 2,
+      "net_return": -0.052229272835338625,
+      "final_equity": 9477.707271646614,
+      "max_drawdown": 0.07597119100731464,
+      "trades": 55,
+      "win_rate": 0.3090909090909091,
+      "profit_factor": 0.6606032193122715,
+      "fees": 373.7576491859712,
+      "daily_sharpe": -1.2261975064994042,
+      "exposure": 0.2681318681318681,
+      "halted": false,
+      "start": "2025-01-01T00:00:00+00:00",
+      "end": "2026-03-31T20:00:00+00:00",
+      "bars": 2730
+    },
+    {
+      "multiplier": 3,
+      "net_return": -0.07618909410438324,
+      "final_equity": 9238.109058956168,
+      "max_drawdown": 0.0935203263634935,
+      "trades": 56,
+      "win_rate": 0.30357142857142855,
+      "profit_factor": 0.5231669302497627,
+      "fees": 505.6799421183059,
+      "daily_sharpe": -2.0078652096560083,
+      "exposure": 0.2663003663003663,
+      "halted": false,
+      "start": "2025-01-01T00:00:00+00:00",
+      "end": "2026-03-31T20:00:00+00:00",
+      "bars": 2730
+    }
+  ],
+  "local_training_neighbourhood": [
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 16,
+        "slow": 8,
+        "stop_atr": 1.5,
+        "reward_r": 2.0
+      },
+      "net_return": 0.04526461226906542,
+      "final_equity": 10452.646122690654,
+      "max_drawdown": 0.06457346495609617,
+      "trades": 165,
+      "win_rate": 0.3939393939393939,
+      "profit_factor": 1.103065792037222,
+      "fees": 726.5439804807878,
+      "daily_sharpe": 0.35346197008729696,
+      "exposure": 0.24775665399239544,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 16,
+        "slow": 8,
+        "stop_atr": 2.0,
+        "reward_r": 2.0
+      },
+      "net_return": 0.07626098073324039,
+      "final_equity": 10762.609807332403,
+      "max_drawdown": 0.048723426712654616,
+      "trades": 148,
+      "win_rate": 0.39864864864864863,
+      "profit_factor": 1.218582033827696,
+      "fees": 522.0982504208187,
+      "daily_sharpe": 0.615575862380928,
+      "exposure": 0.2965779467680608,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 16,
+        "slow": 8,
+        "stop_atr": 2.5,
+        "reward_r": 2.0
+      },
+      "net_return": 0.05647657143123386,
+      "final_equity": 10564.765714312338,
+      "max_drawdown": 0.052650067914488674,
+      "trades": 135,
+      "win_rate": 0.3925925925925926,
+      "profit_factor": 1.1930514265453938,
+      "fees": 380.4892942259564,
+      "daily_sharpe": 0.5344634346274496,
+      "exposure": 0.3370342205323194,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 16,
+        "slow": 10,
+        "stop_atr": 1.5,
+        "reward_r": 2.0
+      },
+      "net_return": 0.0291826418541965,
+      "final_equity": 10291.826418541965,
+      "max_drawdown": 0.07008820547546912,
+      "trades": 165,
+      "win_rate": 0.3939393939393939,
+      "profit_factor": 1.0647492011231945,
+      "fees": 720.9368126830842,
+      "daily_sharpe": 0.23605347998530027,
+      "exposure": 0.251254752851711,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 16,
+        "slow": 10,
+        "stop_atr": 2.0,
+        "reward_r": 2.0
+      },
+      "net_return": 0.06940309817249446,
+      "final_equity": 10694.030981724945,
+      "max_drawdown": 0.05193554412537715,
+      "trades": 147,
+      "win_rate": 0.4013605442176871,
+      "profit_factor": 1.194675070884763,
+      "fees": 517.3321400401131,
+      "daily_sharpe": 0.5573660705331412,
+      "exposure": 0.31072243346007605,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 16,
+        "slow": 10,
+        "stop_atr": 2.5,
+        "reward_r": 2.0
+      },
+      "net_return": 0.03796134113124827,
+      "final_equity": 10379.613411312483,
+      "max_drawdown": 0.04749717011732668,
+      "trades": 134,
+      "win_rate": 0.3805970149253731,
+      "profit_factor": 1.1238585207184415,
+      "fees": 374.7223243647172,
+      "daily_sharpe": 0.3590852468546158,
+      "exposure": 0.35254752851711024,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 16,
+        "slow": 12,
+        "stop_atr": 1.5,
+        "reward_r": 2.0
+      },
+      "net_return": 0.04004067762790586,
+      "final_equity": 10400.406776279058,
+      "max_drawdown": 0.07433193890694534,
+      "trades": 164,
+      "win_rate": 0.4024390243902439,
+      "profit_factor": 1.0890623766127974,
+      "fees": 716.4469959044856,
+      "daily_sharpe": 0.31281753724447886,
+      "exposure": 0.2579467680608365,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 16,
+        "slow": 12,
+        "stop_atr": 2.0,
+        "reward_r": 2.0
+      },
+      "net_return": 0.08464763393912111,
+      "final_equity": 10846.47633939121,
+      "max_drawdown": 0.05869601089726373,
+      "trades": 144,
+      "win_rate": 0.4166666666666667,
+      "profit_factor": 1.241677614871897,
+      "fees": 505.530736753292,
+      "daily_sharpe": 0.6640100970554333,
+      "exposure": 0.331254752851711,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 16,
+        "slow": 12,
+        "stop_atr": 2.5,
+        "reward_r": 2.0
+      },
+      "net_return": 0.050875934245982135,
+      "final_equity": 10508.759342459822,
+      "max_drawdown": 0.052094553327099,
+      "trades": 130,
+      "win_rate": 0.4076923076923077,
+      "profit_factor": 1.1736424375830312,
+      "fees": 363.46368664294545,
+      "daily_sharpe": 0.468139349622324,
+      "exposure": 0.371254752851711,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 20,
+        "slow": 8,
+        "stop_atr": 1.5,
+        "reward_r": 2.0
+      },
+      "net_return": 0.05237026060576144,
+      "final_equity": 10523.702606057614,
+      "max_drawdown": 0.06235879199792316,
+      "trades": 149,
+      "win_rate": 0.40268456375838924,
+      "profit_factor": 1.1336940663268755,
+      "fees": 654.591745697501,
+      "daily_sharpe": 0.42390394779134327,
+      "exposure": 0.22296577946768062,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 20,
+        "slow": 8,
+        "stop_atr": 2.0,
+        "reward_r": 2.0
+      },
+      "net_return": 0.10861367892547902,
+      "final_equity": 11086.13678925479,
+      "max_drawdown": 0.04224202873288829,
+      "trades": 130,
+      "win_rate": 0.4307692307692308,
+      "profit_factor": 1.3663730558705054,
+      "fees": 463.93415299522525,
+      "daily_sharpe": 0.8986537877187655,
+      "exposure": 0.2625095057034221,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 20,
+        "slow": 8,
+        "stop_atr": 2.5,
+        "reward_r": 2.0
+      },
+      "net_return": 0.06891429947572059,
+      "final_equity": 10689.142994757207,
+      "max_drawdown": 0.05010808770451325,
+      "trades": 120,
+      "win_rate": 0.4083333333333333,
+      "profit_factor": 1.267895144464529,
+      "fees": 335.6125270418189,
+      "daily_sharpe": 0.6803006925521816,
+      "exposure": 0.2917110266159696,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 20,
+        "slow": 10,
+        "stop_atr": 1.5,
+        "reward_r": 2.0
+      },
+      "net_return": 0.03893909350035529,
+      "final_equity": 10389.390935003554,
+      "max_drawdown": 0.06540371271964951,
+      "trades": 149,
+      "win_rate": 0.40268456375838924,
+      "profit_factor": 1.0968969446975965,
+      "fees": 651.0169905865814,
+      "daily_sharpe": 0.3202706276190387,
+      "exposure": 0.22524714828897338,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 20,
+        "slow": 10,
+        "stop_atr": 2.0,
+        "reward_r": 2.0
+      },
+      "net_return": 0.10077260383465192,
+      "final_equity": 11007.72603834652,
+      "max_drawdown": 0.046147420683422036,
+      "trades": 129,
+      "win_rate": 0.4263565891472868,
+      "profit_factor": 1.3325510754898946,
+      "fees": 459.06780701005687,
+      "daily_sharpe": 0.8256715369223708,
+      "exposure": 0.27604562737642585,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 20,
+        "slow": 10,
+        "stop_atr": 2.5,
+        "reward_r": 2.0
+      },
+      "net_return": 0.05204011807958109,
+      "final_equity": 10520.40118079581,
+      "max_drawdown": 0.044099773167011413,
+      "trades": 119,
+      "win_rate": 0.3949579831932773,
+      "profit_factor": 1.1925932788774414,
+      "fees": 330.8334245417856,
+      "daily_sharpe": 0.5068339673421148,
+      "exposure": 0.3061596958174905,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 20,
+        "slow": 12,
+        "stop_atr": 1.5,
+        "reward_r": 2.0
+      },
+      "net_return": 0.04246525368257159,
+      "final_equity": 10424.652536825715,
+      "max_drawdown": 0.06702779108756052,
+      "trades": 149,
+      "win_rate": 0.40268456375838924,
+      "profit_factor": 1.1046034973952459,
+      "fees": 649.5762998805326,
+      "daily_sharpe": 0.34445906694453904,
+      "exposure": 0.23315589353612168,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 20,
+        "slow": 12,
+        "stop_atr": 2.0,
+        "reward_r": 2.0
+      },
+      "net_return": 0.10059662125807178,
+      "final_equity": 11005.966212580717,
+      "max_drawdown": 0.051115426457178925,
+      "trades": 129,
+      "win_rate": 0.4263565891472868,
+      "profit_factor": 1.3237615233327495,
+      "fees": 456.89861188896623,
+      "daily_sharpe": 0.8181080032188843,
+      "exposure": 0.28486692015209125,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 20,
+        "slow": 12,
+        "stop_atr": 2.5,
+        "reward_r": 2.0
+      },
+      "net_return": 0.053435625623688976,
+      "final_equity": 10534.35625623689,
+      "max_drawdown": 0.045189862393980484,
+      "trades": 118,
+      "win_rate": 0.4067796610169492,
+      "profit_factor": 1.1987122462604614,
+      "fees": 328.1843728426233,
+      "daily_sharpe": 0.5157301554446176,
+      "exposure": 0.316958174904943,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 24,
+        "slow": 8,
+        "stop_atr": 1.5,
+        "reward_r": 2.0
+      },
+      "net_return": 0.08698912916987056,
+      "final_equity": 10869.891291698706,
+      "max_drawdown": 0.05099674949387345,
+      "trades": 136,
+      "win_rate": 0.41911764705882354,
+      "profit_factor": 1.2471013931074932,
+      "fees": 610.9281322494757,
+      "daily_sharpe": 0.6978383524872078,
+      "exposure": 0.19665399239543727,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 24,
+        "slow": 8,
+        "stop_atr": 2.0,
+        "reward_r": 2.0
+      },
+      "net_return": 0.09514796970397765,
+      "final_equity": 10951.479697039777,
+      "max_drawdown": 0.05194372431568395,
+      "trades": 122,
+      "win_rate": 0.4262295081967213,
+      "profit_factor": 1.334938791671205,
+      "fees": 435.6782350317112,
+      "daily_sharpe": 0.8014107300237111,
+      "exposure": 0.23452471482889733,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 24,
+        "slow": 8,
+        "stop_atr": 2.5,
+        "reward_r": 2.0
+      },
+      "net_return": 0.02894523341152966,
+      "final_equity": 10289.452334115296,
+      "max_drawdown": 0.05387705006096799,
+      "trades": 111,
+      "win_rate": 0.38738738738738737,
+      "profit_factor": 1.1177500115916907,
+      "fees": 303.4558431712889,
+      "daily_sharpe": 0.309454176825181,
+      "exposure": 0.2539923954372624,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 24,
+        "slow": 10,
+        "stop_atr": 1.5,
+        "reward_r": 2.0
+      },
+      "net_return": 0.07312616778674097,
+      "final_equity": 10731.26167786741,
+      "max_drawdown": 0.05183828892207076,
+      "trades": 136,
+      "win_rate": 0.41911764705882354,
+      "profit_factor": 1.2011310442951104,
+      "fees": 607.5431532099179,
+      "daily_sharpe": 0.5888506384659423,
+      "exposure": 0.19893536121673003,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 24,
+        "slow": 10,
+        "stop_atr": 2.0,
+        "reward_r": 2.0
+      },
+      "net_return": 0.08212557521487462,
+      "final_equity": 10821.255752148747,
+      "max_drawdown": 0.05636184138422573,
+      "trades": 122,
+      "win_rate": 0.4180327868852459,
+      "profit_factor": 1.2779193688543296,
+      "fees": 433.8035899206677,
+      "daily_sharpe": 0.6872971296929858,
+      "exposure": 0.24958174904942965,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 24,
+        "slow": 10,
+        "stop_atr": 2.5,
+        "reward_r": 2.0
+      },
+      "net_return": 0.00752177171502888,
+      "final_equity": 10075.217717150288,
+      "max_drawdown": 0.055672545419626296,
+      "trades": 111,
+      "win_rate": 0.36036036036036034,
+      "profit_factor": 1.0287360822238103,
+      "fees": 301.17741111358396,
+      "daily_sharpe": 0.09114444312863122,
+      "exposure": 0.26996197718631176,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 24,
+        "slow": 12,
+        "stop_atr": 1.5,
+        "reward_r": 2.0
+      },
+      "net_return": 0.07677182371170344,
+      "final_equity": 10767.718237117035,
+      "max_drawdown": 0.04847565996422021,
+      "trades": 136,
+      "win_rate": 0.41911764705882354,
+      "profit_factor": 1.208699804720662,
+      "fees": 606.226192504365,
+      "daily_sharpe": 0.6114981789128404,
+      "exposure": 0.20684410646387832,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 24,
+        "slow": 12,
+        "stop_atr": 2.0,
+        "reward_r": 2.0
+      },
+      "net_return": 0.08194526517984602,
+      "final_equity": 10819.45265179846,
+      "max_drawdown": 0.05076292828633622,
+      "trades": 122,
+      "win_rate": 0.4180327868852459,
+      "profit_factor": 1.270296863315391,
+      "fees": 431.72819427511763,
+      "daily_sharpe": 0.6806934467635186,
+      "exposure": 0.25840304182509505,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    },
+    {
+      "candidate": {
+        "family": "breakout",
+        "hours": 4,
+        "fast": 24,
+        "slow": 12,
+        "stop_atr": 2.5,
+        "reward_r": 2.0
+      },
+      "net_return": 0.00884305285956244,
+      "final_equity": 10088.430528595623,
+      "max_drawdown": 0.05960803187400199,
+      "trades": 110,
+      "win_rate": 0.37272727272727274,
+      "profit_factor": 1.0339393217144035,
+      "fees": 298.6533545684036,
+      "daily_sharpe": 0.10355321794802683,
+      "exposure": 0.2807604562737643,
+      "halted": false,
+      "start": "2022-01-01T00:00:00+00:00",
+      "end": "2024-12-31T20:00:00+00:00",
+      "bars": 6575
+    }
+  ],
+  "local_positive_fraction": 1.0,
+  "bootstrap_validation": {
+    "3": {
+      "method": "circular moving-block resampling of daily strategy returns; descriptive, not a forecast or selection-adjusted significance test",
+      "repetitions": 5000,
+      "block_days": 3,
+      "seed": 20260912,
+      "return_percentiles": {
+        "p2_5": -0.10952534077511246,
+        "p50": -0.03070796743770715,
+        "p97_5": 0.054910707877367564
+      },
+      "drawdown_percentiles": {
+        "p50": 0.0605495641862237,
+        "p95": 0.11030701270479959
+      },
+      "fraction_nonpositive_returns": 0.7676
+    },
+    "7": {
+      "method": "circular moving-block resampling of daily strategy returns; descriptive, not a forecast or selection-adjusted significance test",
+      "repetitions": 5000,
+      "block_days": 7,
+      "seed": 20260912,
+      "return_percentiles": {
+        "p2_5": -0.11031540544408132,
+        "p50": -0.031475835773301764,
+        "p97_5": 0.057369393023746544
+      },
+      "drawdown_percentiles": {
+        "p50": 0.061144012036780326,
+        "p95": 0.11182784765034703
+      },
+      "fraction_nonpositive_returns": 0.7652
+    },
+    "14": {
+      "method": "circular moving-block resampling of daily strategy returns; descriptive, not a forecast or selection-adjusted significance test",
+      "repetitions": 5000,
+      "block_days": 14,
+      "seed": 20260912,
+      "return_percentiles": {
+        "p2_5": -0.10820879624903372,
+        "p50": -0.03138334005322824,
+        "p97_5": 0.06155823730108819
+      },
+      "drawdown_percentiles": {
+        "p50": 0.060180345726837,
+        "p95": 0.1098319091143273
+      },
+      "fraction_nonpositive_returns": 0.7602
+    }
+  },
+  "training_walk_forward_rank_stability": [
+    {
+      "training_quarters": 4,
+      "winner": "ema_1h_50_200_atr3",
+      "next_two_quarters_mean": 0.011634532289428623,
+      "future_percentile": 0.8125
+    },
+    {
+      "training_quarters": 5,
+      "winner": "ema_1h_50_200_atr3",
+      "next_two_quarters_mean": 0.00021057463226609174,
+      "future_percentile": 0.875
+    },
+    {
+      "training_quarters": 6,
+      "winner": "ema_1h_50_200_atr3",
+      "next_two_quarters_mean": 0.0005503275459686208,
+      "future_percentile": 0.8125
+    },
+    {
+      "training_quarters": 7,
+      "winner": "ema_1h_50_200_atr3",
+      "next_two_quarters_mean": 0.012366013783173924,
+      "future_percentile": 0.7291666666666666
+    },
+    {
+      "training_quarters": 8,
+      "winner": "ema_1h_50_200_atr3",
+      "next_two_quarters_mean": 0.008208892026754289,
+      "future_percentile": 0.75
+    },
+    {
+      "training_quarters": 9,
+      "winner": "breakout_4h_20_10_atr2",
+      "next_two_quarters_mean": -0.011915198499766466,
+      "future_percentile": 0.3958333333333333
+    },
+    {
+      "training_quarters": 10,
+      "winner": "breakout_4h_20_10_atr2",
+      "next_two_quarters_mean": 0.0037940069453992753,
+      "future_percentile": 0.6666666666666666
+    }
+  ],
+  "additional_configurations": 27,
+  "holdout_accessed": false
+}

@@ -1,0 +1,57 @@
+{
+  "audits": [
+    {
+      "report": "reports/validation.json",
+      "stop_exits": 25,
+      "target_exits": 15,
+      "signal_exits": 15,
+      "median_holding_hours": 32.0,
+      "ambiguous_four_hour_exits": 0,
+      "hourly_target_precedes_stop": 0,
+      "still_ambiguous_with_hourly_data": 0,
+      "window_end_exits": 0,
+      "note": "Four-hour OHLC cannot establish the order of stop/target touches; stop-first is used. No tick-level parity claim."
+    },
+    {
+      "report": "reports/round-two/validation.json",
+      "stop_exits": 4,
+      "target_exits": 3,
+      "signal_exits": 12,
+      "median_holding_hours": 112.0,
+      "ambiguous_four_hour_exits": 0,
+      "hourly_target_precedes_stop": 0,
+      "still_ambiguous_with_hourly_data": 0,
+      "window_end_exits": 0,
+      "note": "Four-hour OHLC cannot establish the order of stop/target touches; stop-first is used. No tick-level parity claim."
+    },
+    {
+      "report": "reports/round-ml/validation.json",
+      "stop_exits": 29,
+      "target_exits": 1,
+      "signal_exits": 77,
+      "median_holding_hours": 16.0,
+      "ambiguous_four_hour_exits": 0,
+      "hourly_target_precedes_stop": 0,
+      "still_ambiguous_with_hourly_data": 0,
+      "window_end_exits": 0,
+      "note": "Four-hour OHLC cannot establish the order of stop/target touches; stop-first is used. No tick-level parity claim."
+    },
+    {
+      "report": "reports/stability-round/breakout_4h_40_20_atr3.json",
+      "stop_exits": 5,
+      "target_exits": 7,
+      "signal_exits": 12,
+      "median_holding_hours": 104.0,
+      "ambiguous_four_hour_exits": 0,
+      "hourly_target_precedes_stop": 0,
+      "still_ambiguous_with_hourly_data": 0,
+      "window_end_exits": 0,
+      "note": "Four-hour OHLC cannot establish the order of stop/target touches; stop-first is used. No tick-level parity claim."
+    }
+  ],
+  "source_market": "Binance spot",
+  "fill_model": "Next-open signals, adverse slippage, stop-first ambiguous candles, worse price on stop gaps.",
+  "funding": "Not applicable to unleveraged spot. These results cannot be transferred to perpetual futures without funding and venue validation.",
+  "drawdown_definition": "Worst adverse intrabar liquidation mark relative to previous/current closing equity peak; not a tick-level drawdown.",
+  "hourly_data_rows": 41173
+}

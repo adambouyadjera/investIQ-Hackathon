@@ -1,0 +1,73 @@
+{
+  "source": "Yahoo Finance via yfinance",
+  "checked_epoch": 1789241400.543848,
+  "checked_at": "2026-09-12T19:30:00.543849+00:00",
+  "quotes": [
+    {
+      "symbol": "BTC-USD",
+      "name": "Bitcoin / USD",
+      "price": 77115.78125,
+      "currency": "USD",
+      "change_pct": -0.07517528921632266,
+      "price_as_of": "2026-09-12T19:29:57+00:00",
+      "bar_date": "2026-09-12",
+      "source": "Yahoo Finance",
+      "stale": false,
+      "url": "https://finance.yahoo.com/quote/BTC-USD/",
+      "status": "ok"
+    },
+    {
+      "symbol": "ETH-USD",
+      "name": "Ethereum / USD",
+      "price": 2519.22998046875,
+      "currency": "USD",
+      "change_pct": 0.17879004111511776,
+      "price_as_of": "2026-09-12T19:29:57+00:00",
+      "bar_date": "2026-09-12",
+      "source": "Yahoo Finance",
+      "stale": false,
+      "url": "https://finance.yahoo.com/quote/ETH-USD/",
+      "status": "ok"
+    },
+    {
+      "symbol": "SPY",
+      "name": "S&P 500 ETF",
+      "price": 764.2899780273438,
+      "currency": "USD",
+      "change_pct": 0.8524287494320992,
+      "price_as_of": "2026-09-11T20:00:00+00:00",
+      "bar_date": "2026-09-11",
+      "source": "Yahoo Finance",
+      "stale": false,
+      "url": "https://finance.yahoo.com/quote/SPY/",
+      "status": "ok"
+    },
+    {
+      "symbol": "QQQ",
+      "name": "Nasdaq-100 ETF",
+      "price": 714.8800048828125,
+      "currency": "USD",
+      "change_pct": 0.8734428904149771,
+      "price_as_of": "2026-09-11T20:00:00+00:00",
+      "bar_date": "2026-09-11",
+      "source": "Yahoo Finance",
+      "stale": false,
+      "url": "https://finance.yahoo.com/quote/QQQ/",
+      "status": "ok"
+    },
+    {
+      "symbol": "GLD",
+      "name": "Gold ETF",
+      "price": 398.7699890136719,
+      "currency": "USD",
+      "change_pct": 0.6080340476276369,
+      "price_as_of": "2026-09-11T20:00:00+00:00",
+      "bar_date": "2026-09-11",
+      "source": "Yahoo Finance",
+      "stale": false,
+      "url": "https://finance.yahoo.com/quote/GLD/",
+      "status": "ok"
+    }
+  ],
+  "note": "Reference quotes may be delayed or from the last trading session. Change compares the latest daily close/observation with the prior daily close. BTC-USD is not BTC/USDT."
+}

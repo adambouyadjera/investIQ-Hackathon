@@ -1,0 +1,15 @@
+{
+  "frozen_at": "2026-09-12T16:00:31.938862+00:00",
+  "candidate": {
+    "family": "breakout",
+    "hours": 4,
+    "fast": 20,
+    "slow": 10,
+    "stop_atr": 2.0,
+    "reward_r": 2.0
+  },
+  "key": "breakout_4h_20_10_atr2",
+  "selection": "Highest frozen development score; validation and holdout not used for ranking",
+  "grid_sha256": "9a52d24a249d5302f5872404057d7350b3c0e47f5c08562379466a0fa8d7e95b",
+  "data_sha256": "96d7f4833ce0a729600a6185a314c2ba9dac2105f663f11bdf8ab5dbc1d33182"
+}

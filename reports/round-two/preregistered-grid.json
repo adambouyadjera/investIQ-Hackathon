@@ -1,0 +1,106 @@
+{
+  "frozen_at": "2026-09-12T17:20:59.963399+00:00",
+  "hypothesis": "A rising 200-period EMA filter plus longer reward targets may reduce countertrend entries and trading-cost drag.",
+  "candidates": [
+    {
+      "family": "trend_breakout",
+      "hours": 4,
+      "fast": 20,
+      "slow": 10,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "trend_breakout",
+      "hours": 4,
+      "fast": 20,
+      "slow": 10,
+      "stop_atr": 2.0,
+      "reward_r": 3.0
+    },
+    {
+      "family": "trend_breakout",
+      "hours": 4,
+      "fast": 20,
+      "slow": 10,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "trend_breakout",
+      "hours": 4,
+      "fast": 20,
+      "slow": 10,
+      "stop_atr": 3.0,
+      "reward_r": 3.0
+    },
+    {
+      "family": "trend_breakout",
+      "hours": 4,
+      "fast": 40,
+      "slow": 20,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "trend_breakout",
+      "hours": 4,
+      "fast": 40,
+      "slow": 20,
+      "stop_atr": 2.0,
+      "reward_r": 3.0
+    },
+    {
+      "family": "trend_breakout",
+      "hours": 4,
+      "fast": 40,
+      "slow": 20,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "trend_breakout",
+      "hours": 4,
+      "fast": 40,
+      "slow": 20,
+      "stop_atr": 3.0,
+      "reward_r": 3.0
+    },
+    {
+      "family": "trend_breakout",
+      "hours": 4,
+      "fast": 80,
+      "slow": 40,
+      "stop_atr": 2.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "trend_breakout",
+      "hours": 4,
+      "fast": 80,
+      "slow": 40,
+      "stop_atr": 2.0,
+      "reward_r": 3.0
+    },
+    {
+      "family": "trend_breakout",
+      "hours": 4,
+      "fast": 80,
+      "slow": 40,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    {
+      "family": "trend_breakout",
+      "hours": 4,
+      "fast": 80,
+      "slow": 40,
+      "stop_atr": 3.0,
+      "reward_r": 3.0
+    }
+  ],
+  "count": 12,
+  "selection": "Rank on 2022\u20132024 ONLY using the same original score. Check selected candidate on reused validation. Do not evaluate any final holdout without a separate decision.",
+  "validation_is_reused": true,
+  "final_holdout_accessed": false
+}

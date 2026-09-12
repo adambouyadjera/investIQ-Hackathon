@@ -1,0 +1,40 @@
+[
+  {
+    "model": "ridge",
+    "candidate": "ridge_4h_100_30_atr3_r3",
+    "observations": 2724,
+    "horizon_hours": 24,
+    "rmse": 0.023516385621996334,
+    "zero_forecast_rmse": 0.023338456194535166,
+    "mse_relative_to_zero": 1.0153058695619601,
+    "directional_accuracy": 0.5018355359765051,
+    "forecast_actual_correlation": 0.028026159024366518,
+    "fraction_above_entry_cost_buffer": 0.18502202643171806,
+    "mean_error_difference_95pct_block_interval": [
+      -4.1326671391939965e-06,
+      2.274387165862096e-05
+    ],
+    "positive_difference_means_worse_than_zero": true,
+    "bootstrap_repetitions": 5000,
+    "limitations": "Overlapping 24-hour labels, small sample and model selection affect inference. Descriptive audit only, not proof of tradability or significance."
+  },
+  {
+    "model": "tree",
+    "candidate": "tree_4h_10_60_atr3_r3",
+    "observations": 2724,
+    "horizon_hours": 24,
+    "rmse": 0.02402702406991597,
+    "zero_forecast_rmse": 0.023338456194535166,
+    "mse_relative_to_zero": 1.059877609408079,
+    "directional_accuracy": 0.4974302496328928,
+    "forecast_actual_correlation": 0.06336487013357112,
+    "fraction_above_entry_cost_buffer": 0.15638766519823788,
+    "mean_error_difference_95pct_block_interval": [
+      -8.865502780410339e-06,
+      7.766954034680685e-05
+    ],
+    "positive_difference_means_worse_than_zero": true,
+    "bootstrap_repetitions": 5000,
+    "limitations": "Overlapping 24-hour labels, small sample and model selection affect inference. Descriptive audit only, not proof of tradability or significance."
+  }
+]

@@ -49,3 +49,13 @@ frontend/.vite/
 .DS_Store
 Thumbs.db
 *.db
+
+# BTC research: retain evidence, keep personal paper state local
+state/accounts/
+state/*.lock
+data/raw/
+
+state/news-cache.json
+
+state/yahoo-quotes.json
+state/yfinance-cache/

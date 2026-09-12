@@ -2,14 +2,9 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { initializeAuth } from './store/auth';
 import { ProtectedRoute } from './components/ProtectedRoute';
-import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
-import DashboardPage from './pages/DashboardPage';
-import ComparePage from './pages/ComparePage';
-import ScenariosPage from './pages/ScenariosPage';
-import RiskDeskPage from './pages/RiskDeskPage';
-import AgentDeskPage from './pages/AgentDeskPage';
+import ResearchDeskPage from './pages/ResearchDeskPage';
 
 export default function App() {
   const [ready, setReady] = useState(false);
@@ -29,49 +24,15 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<ProtectedRoute><ResearchDeskPage /></ProtectedRoute>} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <DashboardPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/compare"
-          element={
-            <ProtectedRoute>
-              <ComparePage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/scenarios"
-          element={
-            <ProtectedRoute>
-              <ScenariosPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/risk"
-          element={
-            <ProtectedRoute>
-              <RiskDeskPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/agent"
-          element={
-            <ProtectedRoute>
-              <AgentDeskPage />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/dashboard" element={<Navigate to="/" replace />} />
+        <Route path="/research" element={<Navigate to="/" replace />} />
+        <Route path="/agent" element={<Navigate to="/?view=autopilot" replace />} />
+        <Route path="/risk" element={<Navigate to="/?view=limits" replace />} />
+        <Route path="/scenarios" element={<Navigate to="/?view=journal" replace />} />
+        <Route path="/compare" element={<Navigate to="/" replace />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

@@ -35,7 +35,7 @@ export default function LoginPage() {
       localStorage.setItem('refresh_token', tokens.refresh_token);
       const user = await getMe();
       setUser(user);
-      navigate('/dashboard');
+      navigate('/');
     } catch (err: any) {
       setServerError(err.response?.data?.detail || 'Login failed. Check your credentials.');
     }

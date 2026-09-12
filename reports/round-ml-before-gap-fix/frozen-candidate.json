@@ -1,0 +1,12 @@
+{
+  "candidate": {
+    "family": "ridge",
+    "hours": 4,
+    "fast": 100,
+    "slow": 30,
+    "stop_atr": 3.0,
+    "reward_r": 3.0
+  },
+  "key": "ridge_4h_100_30_atr3_r3",
+  "frozen_at": "2026-09-12T17:22:51.119526+00:00"
+}

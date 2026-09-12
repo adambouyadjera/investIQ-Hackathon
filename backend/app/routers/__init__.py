@@ -32,3 +32,6 @@ api_router.include_router(risk_router)           # /api/risk/*
 api_router.include_router(agent_router)          # /api/agent/*
 
 __all__ = ["api_router"]
+
+from .research import router as research_router
+api_router.include_router(research_router)

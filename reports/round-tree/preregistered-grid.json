@@ -1,0 +1,41 @@
+{
+  "frozen_at": "2026-09-12T17:29:22.675531+00:00",
+  "hypothesis": "Nonlinear interactions of the same ten causal features may outperform the linear forecast. Same cost buffers and risk rules.",
+  "model": "Histogram gradient boosting, 100 trees, max 7 leaves/depth 3, learning rate .05, minimum 50 samples per leaf, no random early stopping, rolling 365 days, monthly refit, six-bar label purge",
+  "candidates": [
+    {
+      "family": "tree",
+      "hours": 4,
+      "fast": 1,
+      "slow": 30,
+      "stop_atr": 3.0,
+      "reward_r": 3.0
+    },
+    {
+      "family": "tree",
+      "hours": 4,
+      "fast": 1,
+      "slow": 60,
+      "stop_atr": 3.0,
+      "reward_r": 3.0
+    },
+    {
+      "family": "tree",
+      "hours": 4,
+      "fast": 10,
+      "slow": 30,
+      "stop_atr": 3.0,
+      "reward_r": 3.0
+    },
+    {
+      "family": "tree",
+      "hours": 4,
+      "fast": 10,
+      "slow": 60,
+      "stop_atr": 3.0,
+      "reward_r": 3.0
+    }
+  ],
+  "validation_reused": true,
+  "holdout_accessed": false
+}

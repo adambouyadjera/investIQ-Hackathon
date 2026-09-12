@@ -1,0 +1,11 @@
+{
+  "initial_started_at": "2026-09-12T15:50:11Z",
+  "initial_deadline": "2026-09-12T17:50:11Z",
+  "status": "initial_research_complete",
+  "last_updated_at": "2026-09-12T17:34:25.375309+00:00",
+  "paid_api_calls": 0,
+  "trader_dev_backtest_credits_used_in_this_research": 0,
+  "hourly_followup_enabled": true,
+  "initial_research_completed_at": "2026-09-12T17:50:12Z",
+  "integration_status": "complete"
+}

@@ -1,0 +1,6 @@
+{
+  "cases": 100000,
+  "seed": 20260912,
+  "result": "passed",
+  "scope": "Risk sizing algebra only, synthetic randomized inputs. Not market-performance evidence."
+}

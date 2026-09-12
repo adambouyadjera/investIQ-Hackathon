@@ -1,0 +1,25 @@
+{
+  "source": "https://data-api.binance.vision/api/v3/klines",
+  "symbol": "BTCUSDT",
+  "market": "Binance spot",
+  "interval": "1h",
+  "fetched_at": "2026-09-12T19:15:32.854000+00:00",
+  "start": "2022-01-01T00:00:00+00:00",
+  "last_open": "2026-09-12T18:00:00+00:00",
+  "last_close": "2026-09-12T19:00:00+00:00",
+  "rows": 41177,
+  "gaps": [
+    {
+      "after": "2023-03-24T11:00:00+00:00",
+      "before": "2023-03-24T14:00:00+00:00",
+      "missing_hours": 2
+    }
+  ],
+  "rejected_bars": [
+    {
+      "time": 1679659200000,
+      "reason": "Invalid hourly timestamp alignment"
+    }
+  ],
+  "sha256": "c845d5f2cc215f75599bafe8b45fc65c203b32edcf5cd1b12703ca4dc9064704"
+}

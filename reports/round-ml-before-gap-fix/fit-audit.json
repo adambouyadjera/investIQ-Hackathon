@@ -1,0 +1,378 @@
+[
+  {
+    "prediction_month": "2022-05",
+    "train_start": "2022-01-01T00:00:00+00:00",
+    "last_feature_time": "2022-04-29T20:00:00+00:00",
+    "last_label_time": "2022-04-30T20:00:00+00:00",
+    "prediction_start": "2022-05-01T00:00:00+00:00",
+    "training_samples": 515
+  },
+  {
+    "prediction_month": "2022-06",
+    "train_start": "2022-01-01T00:00:00+00:00",
+    "last_feature_time": "2022-05-30T20:00:00+00:00",
+    "last_label_time": "2022-05-31T20:00:00+00:00",
+    "prediction_start": "2022-06-01T00:00:00+00:00",
+    "training_samples": 701
+  },
+  {
+    "prediction_month": "2022-07",
+    "train_start": "2022-01-01T00:00:00+00:00",
+    "last_feature_time": "2022-06-29T20:00:00+00:00",
+    "last_label_time": "2022-06-30T20:00:00+00:00",
+    "prediction_start": "2022-07-01T00:00:00+00:00",
+    "training_samples": 881
+  },
+  {
+    "prediction_month": "2022-08",
+    "train_start": "2022-01-01T00:00:00+00:00",
+    "last_feature_time": "2022-07-30T20:00:00+00:00",
+    "last_label_time": "2022-07-31T20:00:00+00:00",
+    "prediction_start": "2022-08-01T00:00:00+00:00",
+    "training_samples": 1067
+  },
+  {
+    "prediction_month": "2022-09",
+    "train_start": "2022-01-01T00:00:00+00:00",
+    "last_feature_time": "2022-08-30T20:00:00+00:00",
+    "last_label_time": "2022-08-31T20:00:00+00:00",
+    "prediction_start": "2022-09-01T00:00:00+00:00",
+    "training_samples": 1253
+  },
+  {
+    "prediction_month": "2022-10",
+    "train_start": "2022-01-01T00:00:00+00:00",
+    "last_feature_time": "2022-09-29T20:00:00+00:00",
+    "last_label_time": "2022-09-30T20:00:00+00:00",
+    "prediction_start": "2022-10-01T00:00:00+00:00",
+    "training_samples": 1433
+  },
+  {
+    "prediction_month": "2022-11",
+    "train_start": "2022-01-01T00:00:00+00:00",
+    "last_feature_time": "2022-10-30T20:00:00+00:00",
+    "last_label_time": "2022-10-31T20:00:00+00:00",
+    "prediction_start": "2022-11-01T00:00:00+00:00",
+    "training_samples": 1619
+  },
+  {
+    "prediction_month": "2022-12",
+    "train_start": "2022-01-01T00:00:00+00:00",
+    "last_feature_time": "2022-11-29T20:00:00+00:00",
+    "last_label_time": "2022-11-30T20:00:00+00:00",
+    "prediction_start": "2022-12-01T00:00:00+00:00",
+    "training_samples": 1799
+  },
+  {
+    "prediction_month": "2023-01",
+    "train_start": "2022-01-01T00:00:00+00:00",
+    "last_feature_time": "2022-12-30T20:00:00+00:00",
+    "last_label_time": "2022-12-31T20:00:00+00:00",
+    "prediction_start": "2023-01-01T00:00:00+00:00",
+    "training_samples": 1985
+  },
+  {
+    "prediction_month": "2023-02",
+    "train_start": "2022-01-31T00:00:00+00:00",
+    "last_feature_time": "2023-01-30T20:00:00+00:00",
+    "last_label_time": "2023-01-31T20:00:00+00:00",
+    "prediction_start": "2023-02-01T00:00:00+00:00",
+    "training_samples": 2171
+  },
+  {
+    "prediction_month": "2023-03",
+    "train_start": "2022-02-28T00:00:00+00:00",
+    "last_feature_time": "2023-02-27T20:00:00+00:00",
+    "last_label_time": "2023-02-28T20:00:00+00:00",
+    "prediction_start": "2023-03-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2023-04",
+    "train_start": "2022-03-30T20:00:00+00:00",
+    "last_feature_time": "2023-03-30T20:00:00+00:00",
+    "last_label_time": "2023-03-31T20:00:00+00:00",
+    "prediction_start": "2023-04-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2023-05",
+    "train_start": "2022-04-29T20:00:00+00:00",
+    "last_feature_time": "2023-04-29T20:00:00+00:00",
+    "last_label_time": "2023-04-30T20:00:00+00:00",
+    "prediction_start": "2023-05-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2023-06",
+    "train_start": "2022-05-30T20:00:00+00:00",
+    "last_feature_time": "2023-05-30T20:00:00+00:00",
+    "last_label_time": "2023-05-31T20:00:00+00:00",
+    "prediction_start": "2023-06-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2023-07",
+    "train_start": "2022-06-29T20:00:00+00:00",
+    "last_feature_time": "2023-06-29T20:00:00+00:00",
+    "last_label_time": "2023-06-30T20:00:00+00:00",
+    "prediction_start": "2023-07-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2023-08",
+    "train_start": "2022-07-30T20:00:00+00:00",
+    "last_feature_time": "2023-07-30T20:00:00+00:00",
+    "last_label_time": "2023-07-31T20:00:00+00:00",
+    "prediction_start": "2023-08-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2023-09",
+    "train_start": "2022-08-30T20:00:00+00:00",
+    "last_feature_time": "2023-08-30T20:00:00+00:00",
+    "last_label_time": "2023-08-31T20:00:00+00:00",
+    "prediction_start": "2023-09-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2023-10",
+    "train_start": "2022-09-29T20:00:00+00:00",
+    "last_feature_time": "2023-09-29T20:00:00+00:00",
+    "last_label_time": "2023-09-30T20:00:00+00:00",
+    "prediction_start": "2023-10-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2023-11",
+    "train_start": "2022-10-30T20:00:00+00:00",
+    "last_feature_time": "2023-10-30T20:00:00+00:00",
+    "last_label_time": "2023-10-31T20:00:00+00:00",
+    "prediction_start": "2023-11-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2023-12",
+    "train_start": "2022-11-29T20:00:00+00:00",
+    "last_feature_time": "2023-11-29T20:00:00+00:00",
+    "last_label_time": "2023-11-30T20:00:00+00:00",
+    "prediction_start": "2023-12-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2024-01",
+    "train_start": "2022-12-30T20:00:00+00:00",
+    "last_feature_time": "2023-12-30T20:00:00+00:00",
+    "last_label_time": "2023-12-31T20:00:00+00:00",
+    "prediction_start": "2024-01-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2024-02",
+    "train_start": "2023-01-30T20:00:00+00:00",
+    "last_feature_time": "2024-01-30T20:00:00+00:00",
+    "last_label_time": "2024-01-31T20:00:00+00:00",
+    "prediction_start": "2024-02-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2024-03",
+    "train_start": "2023-02-28T20:00:00+00:00",
+    "last_feature_time": "2024-02-28T20:00:00+00:00",
+    "last_label_time": "2024-02-29T20:00:00+00:00",
+    "prediction_start": "2024-03-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2024-04",
+    "train_start": "2023-04-01T00:00:00+00:00",
+    "last_feature_time": "2024-03-30T20:00:00+00:00",
+    "last_label_time": "2024-03-31T20:00:00+00:00",
+    "prediction_start": "2024-04-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2024-05",
+    "train_start": "2023-05-01T00:00:00+00:00",
+    "last_feature_time": "2024-04-29T20:00:00+00:00",
+    "last_label_time": "2024-04-30T20:00:00+00:00",
+    "prediction_start": "2024-05-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2024-06",
+    "train_start": "2023-06-01T00:00:00+00:00",
+    "last_feature_time": "2024-05-30T20:00:00+00:00",
+    "last_label_time": "2024-05-31T20:00:00+00:00",
+    "prediction_start": "2024-06-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2024-07",
+    "train_start": "2023-07-01T00:00:00+00:00",
+    "last_feature_time": "2024-06-29T20:00:00+00:00",
+    "last_label_time": "2024-06-30T20:00:00+00:00",
+    "prediction_start": "2024-07-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2024-08",
+    "train_start": "2023-08-01T00:00:00+00:00",
+    "last_feature_time": "2024-07-30T20:00:00+00:00",
+    "last_label_time": "2024-07-31T20:00:00+00:00",
+    "prediction_start": "2024-08-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2024-09",
+    "train_start": "2023-09-01T00:00:00+00:00",
+    "last_feature_time": "2024-08-30T20:00:00+00:00",
+    "last_label_time": "2024-08-31T20:00:00+00:00",
+    "prediction_start": "2024-09-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2024-10",
+    "train_start": "2023-10-01T00:00:00+00:00",
+    "last_feature_time": "2024-09-29T20:00:00+00:00",
+    "last_label_time": "2024-09-30T20:00:00+00:00",
+    "prediction_start": "2024-10-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2024-11",
+    "train_start": "2023-11-01T00:00:00+00:00",
+    "last_feature_time": "2024-10-30T20:00:00+00:00",
+    "last_label_time": "2024-10-31T20:00:00+00:00",
+    "prediction_start": "2024-11-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2024-12",
+    "train_start": "2023-12-01T00:00:00+00:00",
+    "last_feature_time": "2024-11-29T20:00:00+00:00",
+    "last_label_time": "2024-11-30T20:00:00+00:00",
+    "prediction_start": "2024-12-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2025-01",
+    "train_start": "2024-01-01T00:00:00+00:00",
+    "last_feature_time": "2024-12-30T20:00:00+00:00",
+    "last_label_time": "2024-12-31T20:00:00+00:00",
+    "prediction_start": "2025-01-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2025-02",
+    "train_start": "2024-02-01T00:00:00+00:00",
+    "last_feature_time": "2025-01-30T20:00:00+00:00",
+    "last_label_time": "2025-01-31T20:00:00+00:00",
+    "prediction_start": "2025-02-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2025-03",
+    "train_start": "2024-02-29T00:00:00+00:00",
+    "last_feature_time": "2025-02-27T20:00:00+00:00",
+    "last_label_time": "2025-02-28T20:00:00+00:00",
+    "prediction_start": "2025-03-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2025-04",
+    "train_start": "2024-03-31T00:00:00+00:00",
+    "last_feature_time": "2025-03-30T20:00:00+00:00",
+    "last_label_time": "2025-03-31T20:00:00+00:00",
+    "prediction_start": "2025-04-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2025-05",
+    "train_start": "2024-04-30T00:00:00+00:00",
+    "last_feature_time": "2025-04-29T20:00:00+00:00",
+    "last_label_time": "2025-04-30T20:00:00+00:00",
+    "prediction_start": "2025-05-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2025-06",
+    "train_start": "2024-05-31T00:00:00+00:00",
+    "last_feature_time": "2025-05-30T20:00:00+00:00",
+    "last_label_time": "2025-05-31T20:00:00+00:00",
+    "prediction_start": "2025-06-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2025-07",
+    "train_start": "2024-06-30T00:00:00+00:00",
+    "last_feature_time": "2025-06-29T20:00:00+00:00",
+    "last_label_time": "2025-06-30T20:00:00+00:00",
+    "prediction_start": "2025-07-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2025-08",
+    "train_start": "2024-07-31T00:00:00+00:00",
+    "last_feature_time": "2025-07-30T20:00:00+00:00",
+    "last_label_time": "2025-07-31T20:00:00+00:00",
+    "prediction_start": "2025-08-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2025-09",
+    "train_start": "2024-08-31T00:00:00+00:00",
+    "last_feature_time": "2025-08-30T20:00:00+00:00",
+    "last_label_time": "2025-08-31T20:00:00+00:00",
+    "prediction_start": "2025-09-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2025-10",
+    "train_start": "2024-09-30T00:00:00+00:00",
+    "last_feature_time": "2025-09-29T20:00:00+00:00",
+    "last_label_time": "2025-09-30T20:00:00+00:00",
+    "prediction_start": "2025-10-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2025-11",
+    "train_start": "2024-10-31T00:00:00+00:00",
+    "last_feature_time": "2025-10-30T20:00:00+00:00",
+    "last_label_time": "2025-10-31T20:00:00+00:00",
+    "prediction_start": "2025-11-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2025-12",
+    "train_start": "2024-11-30T00:00:00+00:00",
+    "last_feature_time": "2025-11-29T20:00:00+00:00",
+    "last_label_time": "2025-11-30T20:00:00+00:00",
+    "prediction_start": "2025-12-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2026-01",
+    "train_start": "2024-12-31T00:00:00+00:00",
+    "last_feature_time": "2025-12-30T20:00:00+00:00",
+    "last_label_time": "2025-12-31T20:00:00+00:00",
+    "prediction_start": "2026-01-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2026-02",
+    "train_start": "2025-01-31T00:00:00+00:00",
+    "last_feature_time": "2026-01-30T20:00:00+00:00",
+    "last_label_time": "2026-01-31T20:00:00+00:00",
+    "prediction_start": "2026-02-01T00:00:00+00:00",
+    "training_samples": 2190
+  },
+  {
+    "prediction_month": "2026-03",
+    "train_start": "2025-02-28T00:00:00+00:00",
+    "last_feature_time": "2026-02-27T20:00:00+00:00",
+    "last_label_time": "2026-02-28T20:00:00+00:00",
+    "prediction_start": "2026-03-01T00:00:00+00:00",
+    "training_samples": 2190
+  }
+]

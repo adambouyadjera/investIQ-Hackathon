@@ -1,0 +1,74 @@
+[
+  {
+    "key": "ema_1h_50_200_atr3",
+    "candidate": {
+      "family": "ema",
+      "hours": 1,
+      "fast": 50,
+      "slow": 200,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    "metrics": {
+      "net_return": -0.021169096429903056,
+      "final_equity": 9788.30903570097,
+      "max_drawdown": 0.04888565835247416,
+      "trades": 36,
+      "win_rate": 0.3333333333333333,
+      "profit_factor": 0.8077056959968438,
+      "fees": 188.69080789715042,
+      "daily_sharpe": -0.5769140504341778,
+      "exposure": 0.1347069597069597,
+      "halted": false,
+      "start": "2025-01-01T00:00:00+00:00",
+      "end": "2026-03-31T23:00:00+00:00",
+      "bars": 10920
+    },
+    "gates": {
+      "positive_return": false,
+      "profit_factor_at_least_1_10": false,
+      "sufficient_trades": true,
+      "drawdown_below_10pct": true,
+      "no_risk_stop": true,
+      "positive_under_double_costs": false,
+      "majority_positive_quarters": false
+    },
+    "passed": false
+  },
+  {
+    "key": "breakout_4h_40_20_atr3",
+    "candidate": {
+      "family": "breakout",
+      "hours": 4,
+      "fast": 40,
+      "slow": 20,
+      "stop_atr": 3.0,
+      "reward_r": 2.0
+    },
+    "metrics": {
+      "net_return": 0.009308676105048264,
+      "final_equity": 10093.086761050483,
+      "max_drawdown": 0.027079748834263784,
+      "trades": 24,
+      "win_rate": 0.3333333333333333,
+      "profit_factor": 1.1721945531506115,
+      "fees": 64.5906887322212,
+      "daily_sharpe": 0.3104176468578342,
+      "exposure": 0.2937728937728938,
+      "halted": false,
+      "start": "2025-01-01T00:00:00+00:00",
+      "end": "2026-03-31T20:00:00+00:00",
+      "bars": 2730
+    },
+    "gates": {
+      "positive_return": true,
+      "profit_factor_at_least_1_10": true,
+      "sufficient_trades": false,
+      "drawdown_below_10pct": true,
+      "no_risk_stop": true,
+      "positive_under_double_costs": false,
+      "majority_positive_quarters": true
+    },
+    "passed": false
+  }
+]

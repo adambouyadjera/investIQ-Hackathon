@@ -59,6 +59,8 @@ async def lifespan(app: FastAPI):
         minute=0,
         id="price_refresh",
     )
+    from .routers.research import monitor_accounts
+    scheduler.add_job(monitor_accounts, "interval", seconds=60, id="paper_monitor", max_instances=1, coalesce=True)
     scheduler.start()
     logger.info("Scheduler started (quote: 60s, price: daily 06:00 UTC)")
 

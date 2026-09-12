@@ -1,0 +1,12 @@
+{
+  "candidate": {
+    "family": "trend_breakout",
+    "hours": 4,
+    "fast": 40,
+    "slow": 20,
+    "stop_atr": 3.0,
+    "reward_r": 3.0
+  },
+  "key": "trend_breakout_4h_40_20_atr3_r3",
+  "frozen_at": "2026-09-12T17:21:00.736998+00:00"
+}
