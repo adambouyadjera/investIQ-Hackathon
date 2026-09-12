@@ -48,3 +48,4 @@ frontend/.vite/
 *.swp
 .DS_Store
 Thumbs.db
+*.db

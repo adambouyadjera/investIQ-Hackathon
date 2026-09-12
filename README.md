@@ -1,70 +1,141 @@
-# Portfolio Strategy Simulator — Engine
+# Portfolio Strategy Simulator
 
-Day 1, hours 1–5. Pure Python. No web server, no database, no frontend.
-If the numbers here are wrong, nothing built on top of it matters.
+A full-stack investment strategy simulator with real market data, historical backtests, and Monte Carlo projections.
 
-## Run it
+## Tech Stack
+
+| Layer | Tech |
+|---|---|
+| Backend | Python · FastAPI · SQLAlchemy (async) · APScheduler |
+| Database | PostgreSQL (Docker) · SQLite (local dev) |
+| Analytics engine | Python · NumPy · Pandas · yfinance |
+| Market data | Polygon.io · Alpha Vantage · yfinance (3-source waterfall) |
+| Frontend | React 18 · TypeScript · Tailwind CSS · Recharts |
+| Auth | JWT (access + refresh tokens) · bcrypt |
+| Infrastructure | Docker Compose |
+
+## Features
+
+- Portfolio simulation with allocation, historical backtest, and Monte Carlo projection
+- Three risk tiers: Conservative · Balanced · Aggressive
+- Side-by-side strategy comparison
+- Income-based savings recommendation (50/30/20 rule)
+- Risk tolerance questionnaire (5 questions → recommended tier)
+- Saved scenarios (up to 10 per user)
+- Export simulation results as JSON
+- Live market quote refresh every 5 minutes (Polygon → Alpha Vantage → yfinance)
+- Age + US citizenship verification on registration
+
+### Risk desk (`trading/`)
+- Pre-trade risk gate with a circuit-breaker cascade (1% per trade, daily/weekly/monthly/peak limits)
+- Position sizing derived from stop distance — a strategy cannot name its own size
+
+### Agent desk (`agent/`) — paper trading only
+- Explainable scoring: five quantitative features + news sentiment, every contribution shown
+- Point-in-time features and headlines, with a one-bar execution lag
+- Realistic costs: commission, spread, slippage, borrow
+- Benchmarked against buy-and-hold, with a deflated-Sharpe penalty for multiple testing
+- Walk-forward split reporting in-sample and out-of-sample separately
+- **No live mode.** No broker client, no credentials, no order submission
+
+## Quick Start (Local Dev)
+
+### 1. Backend
 
 ```bash
+cd backend
 pip install -r requirements.txt
-python test_engine.py                      # 20 tests, should all pass
-python scripts/fetch_data.py --years 12    # real data -> data/prices.csv
-python run_demo.py --amount 25000 --horizon 20 --risk aggressive --monthly 500
-python run_demo.py --compare --amount 25000 --horizon 20
-python run_demo.py --income 5200 --essentials 2900
+cp .env .env  # edit values if needed
+python -m uvicorn app.main:app --reload --port 8000
 ```
 
-## Layout
+The backend uses SQLite by default (`dev.db`) so no Postgres needed for local dev.
 
-| File | What it owns |
-|---|---|
-| `engine/universe.py` | The 15 tickers, asset classes, expense ratios |
-| `engine/data.py` | Price loading: snapshot → yfinance → synthetic fallback |
-| `engine/portfolios.py` | Three model portfolios + the horizon glide path |
-| `engine/metrics.py` | CAGR, vol, Sharpe, Sortino, max drawdown, Calmar, VaR |
-| `engine/backtest.py` | Contributions, rebalancing, fee drag |
-| `engine/montecarlo.py` | Block-bootstrap forward projection |
-| `engine/allocate.py` | Top-level `build()`, savings capacity, risk questionnaire |
+### 2. Frontend
 
-## Three decisions worth defending in an interview
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-**Fixed universe, fixed weight vectors.** Every portfolio is a weight vector
-over the same 15 assets. That makes comparison, rebalancing and backtesting
-one code path instead of three. No optimizer, because a mean-variance
-optimizer fit on 12 years of data produces confidently wrong answers.
+App runs at http://localhost:5173
 
-**Horizon overrides stated risk tolerance.** `portfolios.target_weights`
-blends the chosen tier toward a capital-preservation anchor as the horizon
-shortens. Someone investing aggressively for a 2-year goal gets ~24% equity,
-not 87%. This is the real finance in the project.
+### 3. Full Stack with Docker (includes PostgreSQL)
 
-**Block bootstrap, not IID normals.** `montecarlo.project` resamples
-contiguous 21-day blocks of actual history. That preserves fat tails and
-volatility clustering. Drawing from a normal distribution would systematically
-understate the odds of a bad decade — the exact number a user cares about.
+```bash
+# Copy and set env vars
+cp backend/.env .env  # or set ALPHA_VANTAGE_KEY, POLYGON_KEY in environment
 
-## Data sourcing
+docker-compose up --build
+```
 
-One source (`yfinance`), snapshotted to CSV, with a deterministic synthetic
-generator as a last resort. `load_prices()` returns the source it used so the
-UI can label it. Reconciling multiple vendors' prices and ticker conventions
-is days of work for no visible benefit at this scale.
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:8000
+- API docs: http://localhost:8000/docs
 
-## Deliberately not here
+## Running the engines directly (no server needed)
 
-Per-second updates, LLM-generated numbers, options data, live trading.
-Risk tiers are a function of volatility measured over years; recomputing them
-every second produces identical output thousands of times an hour. When the
-LLM goes in (day 2), it writes the plain-English explanation of a portfolio
-that the deterministic code already chose. It never produces a number.
+```bash
+python test_engine.py       # 20 tests — allocation, backtest, Monte Carlo
+python test_trading.py      # 42 tests — the risk gate and its boundaries
+python test_agent.py        # 49 tests — the paper desk, lookahead and honesty checks
 
-## Next
+python run_demo.py          # portfolio simulation walkthrough
+python run_risk_demo.py     # 10 risk-gate scenarios
+python run_agent_demo.py    # agent scan, backtest and walk-forward
+```
 
-FastAPI over `allocate.build()` — `/universe`, `/allocate`, `/backtest`,
-`/project`, `/compare`. `build()` already returns JSON-serializable output, so
-the route handlers are near-trivial.
+See [TRADING.md](TRADING.md) for the risk layer and [AGENT.md](AGENT.md) for the
+paper-trading desk.
 
----
+## Market Data Sources
 
-Simulated results based on historical data. Educational use only.
-Not financial advice.
+The platform uses a 3-source waterfall:
+
+1. **Polygon.io** — real-time quotes (set `POLYGON_KEY`)
+2. **Alpha Vantage** — 15-min delayed quotes (set `ALPHA_VANTAGE_KEY`)
+3. **yfinance** — always-available fallback, best for historical data
+
+Without API keys, yfinance is used exclusively — fully functional, just not real-time.
+
+## API Reference
+
+All endpoints (except `/health` and `/auth/*`) require `Authorization: Bearer <token>`.
+
+| Method | Path | Description |
+|---|---|---|
+| POST | `/auth/register` | Create account |
+| POST | `/auth/login` | Get tokens |
+| POST | `/auth/refresh` | Refresh access token |
+| GET | `/auth/me` | Current user |
+| POST | `/portfolio/simulate` | Run simulation |
+| POST | `/portfolio/compare` | All 3 tiers at once |
+| POST | `/portfolio/savings` | Income → investment recommendation |
+| POST | `/portfolio/questionnaire` | Score risk questionnaire |
+| GET | `/portfolio/questions` | Get questionnaire questions |
+| GET | `/market/quotes` | Live quote cache |
+| GET | `/risk/policy` | The risk constitution |
+| POST | `/risk/evaluate` | Run one proposal through the gate |
+| GET | `/agent/config` | Agent weights, thresholds, risk limits |
+| POST | `/agent/scan` | Today's proposals, fully decomposed |
+| POST | `/agent/backtest` | One window vs benchmark, with significance |
+| POST | `/agent/walk-forward` | In-sample and out-of-sample, reported apart |
+| GET | `/agent/regime` | Recent market-regime labels |
+| GET | `/scenarios/` | List saved scenarios |
+| POST | `/scenarios/` | Save a scenario |
+| DELETE | `/scenarios/{id}` | Delete a scenario |
+
+## Disclaimer
+
+This platform is for educational purposes only. All projections are based on
+historical data and do not constitute financial advice. Past performance does
+not guarantee future results. Available to US residents only.
+
+**No real-money trading.** The agent desk is a simulation. There is no broker
+connection, no API credential and no live mode anywhere in this codebase, and a
+test enforces that (`test_agent.py::no_broker_imports_anywhere`). The
+backtested strategy shipped here **does not beat buy-and-hold** over the tested
+window, and its deflated Sharpe ratio does not clear the significance hurdle —
+see [AGENT.md](AGENT.md) for the full numbers. No claim of predictive accuracy
+is made or implied.

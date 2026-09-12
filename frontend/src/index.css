@@ -1,0 +1,190 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+/* ══════════════════════════════════════════════════════════════════════════
+   InvestIQ
+
+   The subject is a risk desk — an instrument panel for money. That rules out
+   the two obvious fintech defaults: indigo-on-near-black SaaS, and the neon
+   crypto terminal. Instead, a blue-cast slate ground with brass as the only
+   accent. Brass reads as instrumentation rather than notification, and it is
+   rare enough in this category to be recognisable.
+
+   Components across the app use Tailwind's grey and indigo ramps directly
+   (bg-gray-900, text-indigo-400). Rather than edit twenty files, both themes
+   remap the ramps themselves. Every component re-skins at once, and anything
+   added later inherits the palette for free.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Slate ground. Blue-cast, never pure black — pure black with a bright
+     accent is the default trading-app look and reads as generic. */
+  --color-gray-950: #080D13;
+  --color-gray-900: #0C1219;
+  --color-gray-800: #121A24;
+  --color-gray-750: #16202B;
+  --color-gray-700: #1E2A37;
+  --color-gray-600: #2A3845;
+  --color-gray-500: #5A6B7C;
+  --color-gray-400: #8798A8;
+  --color-gray-300: #A9B8C6;
+  --color-gray-200: #CBD6E0;
+  --color-gray-100: #E1E9F0;
+  --color-gray-50:  #F0F5F9;
+
+  /* Brass. The single accent, reserved for primary actions and active state. */
+  --color-indigo-900: #3A2B0E;
+  --color-indigo-800: #4E3A13;
+  --color-indigo-700: #6B5019;
+  --color-indigo-600: #A87C28;
+  --color-indigo-500: #C89544;
+  --color-indigo-400: #D9A855;
+  --color-indigo-300: #E5BE7C;
+  --color-indigo-200: #EFD5A8;
+  --color-indigo-100: #F7E9CE;
+
+  /* Direction. Teal-green against warm coral stays distinguishable under
+     deuteranopia, where the stock green/red pair collapses. Colour never
+     carries meaning alone — every figure keeps its sign. */
+  --color-emerald-900: #0A2E24;
+  --color-emerald-800: #0F4636;
+  --color-emerald-400: #6FCCA9;
+  --color-emerald-300: #93DCC1;
+  --color-green-400:   #6FCCA9;
+  --color-green-500:   #4FBE95;
+
+  --color-red-900: #3A1A14;
+  --color-red-800: #4E2219;
+  --color-red-700: #6B2F22;
+  --color-red-500: #B84A33;
+  --color-red-400: #C9573F;
+  --color-red-300: #DD7B62;
+
+  --color-blue-900: #10263A;
+  --color-blue-400: #5BA3D0;
+  --color-blue-300: #8AC0E0;
+
+  --color-yellow-400: #D9A855;
+  --color-amber-400: #D9A855;
+  --color-white: #E6EDF3;
+
+  --color-bg: #0C1219;
+  --color-surface: #121A24;
+  --color-card: #18222E;
+  --color-border: #263340;
+  --color-accent: #C89544;
+  --color-accent-hover: #D9A855;
+  --color-green: #6FCCA9;
+  --color-red: #C9573F;
+  --color-yellow: #D9A855;
+  --color-text: #E6EDF3;
+  --color-muted: #8798A8;
+  --grid-line: #1E2A37;
+}
+
+/* ─── Light ────────────────────────────────────────────────────────────────
+   A cool paper ground, not cream. Brass darkens substantially to clear AA
+   contrast on white, and the direction pair deepens for the same reason — a
+   tint that reads confidently on slate disappears on paper. */
+
+[data-theme="light"] {
+  --color-gray-950: #EDF1F5;
+  --color-gray-900: #FFFFFF;
+  --color-gray-800: #F2F5F8;
+  --color-gray-750: #EDF1F5;
+  --color-gray-700: #DFE6ED;
+  --color-gray-600: #C7D2DD;
+  --color-gray-500: #8494A3;
+  --color-gray-400: #5A6875;
+  --color-gray-300: #404D5A;
+  --color-gray-200: #2A3642;
+  --color-gray-100: #1A242F;
+  --color-gray-50:  #101820;
+
+  --color-indigo-900: #F5E9D2;
+  --color-indigo-800: #EBD8B4;
+  --color-indigo-700: #D9BC85;
+  --color-indigo-600: #9A6F20;
+  --color-indigo-500: #8A6217;
+  --color-indigo-400: #7A5613;
+  --color-indigo-300: #6B4A10;
+  --color-indigo-200: #5C3F0D;
+  --color-indigo-100: #4D340B;
+
+  --color-emerald-900: #DDF2EA;
+  --color-emerald-800: #B8E2D3;
+  --color-emerald-400: #0F7355;
+  --color-emerald-300: #0C5C44;
+  --color-green-400:   #0F7355;
+  --color-green-500:   #0C5C44;
+
+  --color-red-900: #FBE4DE;
+  --color-red-800: #F5CBC0;
+  --color-red-700: #E0A492;
+  --color-red-500: #A63F2B;
+  --color-red-400: #B34632;
+  --color-red-300: #8F3524;
+
+  --color-blue-900: #DEEBF5;
+  --color-blue-400: #1F5B80;
+  --color-blue-300: #17455F;
+
+  --color-yellow-400: #8A6217;
+  --color-amber-400: #8A6217;
+  --color-white: #101820;
+  --color-black: #FFFFFF;
+
+  --color-bg: #EDF1F5;
+  --color-surface: #FFFFFF;
+  --color-card: #FFFFFF;
+  --color-border: #DFE6ED;
+  --color-accent: #8A6217;
+  --color-accent-hover: #7A5613;
+  --color-green: #0F7355;
+  --color-red: #B34632;
+  --color-yellow: #8A6217;
+  --color-text: #101820;
+  --color-muted: #5A6875;
+  --grid-line: #DFE6ED;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Numbers must line up column to column. Tabular figures are the cheapest
+   thing that separates a finance UI from a generic dashboard. */
+table, .tabular, input[type="number"], .recharts-text {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.mono {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-surface); }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-muted); }
+
+.recharts-cartesian-grid line { stroke: var(--grid-line); }
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

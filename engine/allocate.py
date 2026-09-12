@@ -13,7 +13,7 @@ import math
 import pandas as pd
 
 from . import backtest, metrics, montecarlo, portfolios
-from .data import load_prices, portfolio_returns
+from .data import daily_returns, load_prices, portfolio_returns
 from .universe import BY_TICKER, expense_ratio
 
 EMERGENCY_MONTHS = 4.0
@@ -177,6 +177,16 @@ def build(
             "expense_ratio": asset.expense_ratio,
         })
 
+    _rets = daily_returns(prices)
+    for item in allocation:
+        t = item["ticker"]
+        if t in _rets.columns:
+            item["return_1y"] = round(float((1 + _rets[t].iloc[-252:]).prod() - 1), 5)
+            item["return_5y"] = round(float((1 + _rets[t].iloc[-1260:]).prod() - 1), 5)
+        else:
+            item["return_1y"] = None
+            item["return_5y"] = None
+
     bt = backtest.run(
         prices, weights,
         initial=amount,
@@ -192,6 +202,12 @@ def build(
         annual_fee=expense_ratio(weights) + extra_fee,
         goal=goal,
     )
+    held = [item["ticker"] for item in allocation]
+    _corr = metrics.correlation_matrix(_rets[held])
+    corr_dict = {
+        row: {col: round(float(_corr.loc[row, col]), 4) for col in held}
+        for row in held
+    }
 
     return {
         "inputs": {
@@ -211,6 +227,7 @@ def build(
         "equity_share": round(portfolios.equity_share(weights), 4),
         "horizon_factor": round(portfolios.horizon_factor(horizon_years), 3),
         "blended_expense_ratio": round(expense_ratio(weights), 5),
+        "correlation_matrix": corr_dict,
         "backtest": bt.to_dict(),
         "projection": proj.to_dict(),
         "disclaimer": (
