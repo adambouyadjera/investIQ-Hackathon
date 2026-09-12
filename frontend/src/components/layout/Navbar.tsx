@@ -1,7 +1,7 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { logout } from '../../store/auth';
-import { TrendingUp, LogOut, BookOpen, BarChart2, ShieldAlert, Bot } from 'lucide-react';
+import { TrendingUp, LogOut, BookOpen, BarChart2, ShieldAlert, Bot, FlaskConical } from 'lucide-react';
 import { ThemeToggle } from '../ui/ThemeToggle';
 
 export function Navbar() {
@@ -52,6 +52,7 @@ export function Navbar() {
               <ShieldAlert className="w-4 h-4" />
               <span className="hidden sm:inline">Risk desk</span>
             </Link>
+            <Link to="/research" aria-label="BTC research desk" className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm ${isActive('/research')}`}><FlaskConical className="w-4 h-4" /><span className="hidden sm:inline">Research</span></Link>
             <Link
               to="/agent"
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm transition-colors ${isActive('/agent')}`}
