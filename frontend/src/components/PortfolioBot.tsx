@@ -14,7 +14,7 @@ const RISKS: { key: Risk; label: string; hint: string }[] = [
   { key: 'medium', label: 'Medium', hint: 'Funds, stocks, a little crypto' },
   { key: 'high', label: 'High', hint: 'More stocks and crypto, bigger swings' },
 ];
-const REPLAY_DAYS = 30;
+const REPLAY_DAYS = 90;
 const amountOk = (v: string) => v.trim() !== '' && Number(v) >= 100 && Number(v) <= 1000000;
 const monthsOk = (v: string) => Number.isInteger(Number(v)) && Number(v) >= 1 && Number(v) <= 120;
 
@@ -64,11 +64,11 @@ function Setup({ onDone }: { onDone: (p: Portfolio) => void }) {
     <Questions prefix="setup" amount={amount} setAmount={setAmount} risk={risk} setRisk={setRisk} months={months} setMonths={setMonths}/>
     <label className="rd-replay-toggle">
       <input type="checkbox" checked={replay} onChange={e => setReplay(e.target.checked)}/>
-      <span><strong>Include the past month</strong><small>Replay the last {REPLAY_DAYS} days on real prices so you see results right away.</small></span>
+      <span><strong>Include the past 3 months</strong><small>Replay the last {REPLAY_DAYS} days on real prices so you see results right away.</small></span>
     </label>
     {error && <p className="rd-feed-error" role="alert">{error}</p>}
-    <button className="rd-primary rd-start" disabled={!ready || busy} onClick={() => void start()}>{busy ? (replay ? 'Replaying the past month…' : 'Analyzing the market…') : 'Start Investor AI'}</button>
-    {busy && replay && <p className="rd-news-note" role="status">Replaying the past month. This can take a few minutes.</p>}
+    <button className="rd-primary rd-start" disabled={!ready || busy} onClick={() => void start()}>{busy ? (replay ? 'Replaying the past 3 months…' : 'Analyzing the market…') : 'Start Investor AI'}</button>
+    {busy && replay && <p className="rd-news-note" role="status">Replaying the past 3 months. This can take a few minutes.</p>}
   </section>;
 }
 
@@ -160,7 +160,7 @@ function CurrentActivity({ data: d, busy, onControl, onWhy, onHistory }: { data:
 }
 
 type SettingsAction = 'apply' | 'reset' | 'replay';
-const CONFIRM_LABEL: Record<SettingsAction, string> = { apply: 'Yes, apply', reset: 'Yes, start over', replay: 'Yes, replay the past month' };
+const CONFIRM_LABEL: Record<SettingsAction, string> = { apply: 'Yes, apply', reset: 'Yes, start over', replay: 'Yes, replay the past 3 months' };
 
 function Settings({ data: d, onApplied }: { data: ConfiguredPortfolio; onApplied: (p: Portfolio) => void }) {
   const [amount, setAmount] = useState(String(d.deposits)), [risk, setRisk] = useState<Risk>(d.settings.risk), [months, setMonths] = useState(String(d.settings.months));
@@ -198,19 +198,19 @@ function Settings({ data: d, onApplied }: { data: ConfiguredPortfolio; onApplied
     <div className="rd-effect" aria-live="polite">
       <p><strong>Cash:</strong> {tooLow ? `Your portfolio is worth ${usd(d.portfolio_value)}, so the amount can’t go below ${usd(d.deposits - d.portfolio_value)}. Use Start over instead.` : cashEffect}</p>
       {(risk !== d.settings.risk || Number(months) !== d.settings.months) && <p><strong>Plan:</strong> the bot rebuilds its plan with the new settings right away and may buy or sell.</p>}
-      <p className="rd-why-note">Profit and loss are measured against the amount you enter. Applying keeps your trading history; replaying the past month replaces it.</p>
+      <p className="rd-why-note">Profit and loss are measured against the amount you enter. Applying keeps your trading history; replaying the past 3 months replaces it.</p>
     </div>
     {error && <p className="rd-feed-error" role="alert">{error}</p>}
     {pending ? <div className="rd-confirm" role="alertdialog" aria-labelledby="confirm-text">
       <p id="confirm-text">{pending.message}</p>
       <div className="rd-pcontrols">
-        <button className={pending.action === 'apply' ? 'rd-primary' : 'rd-danger'} disabled={!!busy} onClick={() => void run(pending.action, true)}>{busy ? (busy === 'replay' ? 'Replaying the past month…' : 'Applying…') : CONFIRM_LABEL[pending.action]}</button>
+        <button className={pending.action === 'apply' ? 'rd-primary' : 'rd-danger'} disabled={!!busy} onClick={() => void run(pending.action, true)}>{busy ? (busy === 'replay' ? 'Replaying the past 3 months…' : 'Applying…') : CONFIRM_LABEL[pending.action]}</button>
         <button className="rd-secondary" disabled={!!busy} onClick={() => setPending(null)}>Cancel</button>
       </div>
     </div> : <div className="rd-pcontrols">
       <button className="rd-primary" disabled={!changed || tooLow || !!busy} onClick={() => void run('apply', false)}>{busy === 'apply' ? 'Applying…' : 'Apply settings'}</button>
       <button className="rd-danger-outline" disabled={!valid || !!busy} onClick={() => void run('reset', false)}>Start over with {valid ? usd(Number(amount)) : 'this amount'}</button>
-      <button className="rd-danger-outline" disabled={!valid || !!busy} onClick={() => void run('replay', false)}>Replay past month with these settings</button>
+      <button className="rd-danger-outline" disabled={!valid || !!busy} onClick={() => void run('replay', false)}>Replay past 3 months with these settings</button>
     </div>}
   </section>;
 }
