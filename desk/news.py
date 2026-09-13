@@ -18,7 +18,7 @@ SOURCES = [
     {'name':'CNBC','url':'https://www.cnbc.com/id/100003114/device/rss/rss.html','domains':['cnbc.com']},
     {'name':'Yahoo Finance','url':'https://finance.yahoo.com/news/rssindex','domains':['yahoo.com']},
 ]
-TTL = 600
+TTL = 120  # the live Top-rated list re-checks news every minute; feeds are fetched at most every 2 minutes
 CACHE = ROOT/'state/news-cache.json'
 
 def parse_feed(payload, source):

@@ -1,89 +1,120 @@
-import { useEffect, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { logout } from '../store/auth';
-import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, ReferenceLine } from 'recharts';
-import { LayoutGrid, Bot, Shield, ChartNoAxesCombined, Calculator, RefreshCw, LogOut, CircleStop, TrendingUp } from 'lucide-react';
-import api from '../api/client';
-import BeginnerGuide, { type HomeTab } from '../components/BeginnerGuide';
+import { ArrowRight, Bot, Info, LayoutGrid, LogOut, Newspaper, PieChart, TrendingUp } from 'lucide-react';
+import BeginnerGuide from '../components/BeginnerGuide';
 import Simulator from '../components/Simulator';
 import DeskNews from '../components/DeskNews';
 import YahooQuotes from '../components/YahooQuotes';
+import PortfolioBot from '../components/PortfolioBot';
 import { useBinanceTicker } from '../hooks/useBinanceTicker';
-import RealMoneyGuide from '../components/RealMoneyGuide';
-import BotStatusPanel from '../components/BotStatusPanel';
 import './research-desk.css';
 
-type Metrics = {net_return:number; max_drawdown:number; trades:number; profit_factor:number|null};
-type Candidate = {key:string;name:string;candidate:{hours:number;fast:number;slow:number};metrics:Metrics;stress:Metrics|null;gates:Record<string,boolean>;curve:{time:string;equity:number}[]};
-type Paper = {enabled:boolean;status:string;equity:number;cash:number;peak_equity:number;fees_paid:number;price:number|null;position:{qty:number;entry:number;stop:number;target:number}|null;last_checked_at:string|null;created_at:string;plan:{capital:number;risk_pct:number;horizon_months:number};equity_history:{time:string;equity:number}[];periods:Record<string,{base:number}>;error?:string;events:{at:string;message:string;kind:string}[]};
-type Research = {configurations_tested:number;validated_candidates:number;passed_candidates:number;validations:Candidate[];notes:string[];operating_costs:string;generated_at:string;leaderboard:{key:string;name:string;development:Metrics}[]};
-const pct=(n:number)=>`${(n*100).toFixed(2)}%`;
 const money=(n:number)=>n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
-const nav=[{key:'overview',label:'Home',icon:LayoutGrid},{key:'autopilot',label:'Bot',icon:Bot},{key:'markets',label:'Markets',icon:ChartNoAxesCombined},{key:'simulator',label:'Simulator',icon:Calculator},{key:'limits',label:'Safety',icon:Shield}];
-function Meter({label,value,limit,color='green'}:{label:string;value:number;limit:number;color?:string}){return <div className="rd-meter"><span>{label}</span><p><strong>{value.toFixed(1)}</strong><small> of {limit}%</small></p><div className="rd-track"><i className={color} style={{width:`${Math.min(100,Math.max(0,value/limit*100))}%`}}/></div></div>}
+const NAV=[
+ {key:'home',label:'Home',icon:LayoutGrid,sub:''},
+ {key:'investor-ai',label:'Investor AI',icon:Bot,sub:'Enter your amount, risk level and timeline. The AI builds a strategy, manages the portfolio and explains every trade.'},
+ {key:'recommendations',label:'Stock Recommendations',icon:PieChart,sub:'Stocks and ETFs picked for your risk level and timeline, with how much to put in each.'},
+ {key:'news',label:'Market News',icon:Newspaper,sub:'The latest headlines and prices that can move your investments.'},
+ {key:'info',label:'Info',icon:Info,sub:'How InvestIQ works and what to know before you invest.'},
+];
+// Links saved before the redesign still open the right page.
+const LEGACY:Record<string,string>={overview:'home',autopilot:'investor-ai',simulator:'recommendations',markets:'news',limits:'info'};
+const NEXT:Record<string,string>={'investor-ai':'recommendations',recommendations:'news'};
+
+// Mirrors RISK in desk/portfolio_bot.py.
+const RULES:[string,string,string,string][]=[
+ ['Cash kept aside','25%','10%','5%'],
+ ['Most in one investment','20%','25%','35%'],
+ ['Most in company stocks','20%','50%','85%'],
+ ['Most in one industry','30%','35%','50%'],
+ ['Most in crypto (Bitcoin, Ethereum)','0%','10%','20%'],
+ ['Sells an investment after a loss of','8%','12%','18%'],
+ ['Skips investments with yearly volatility above','30%','50%','90%'],
+ ['Investments held at most','6','5','4'],
+];
+const FACTORS:[string,string][]=[
+ ['Risk tolerance','Sets limits, like how much can go into one stock or industry.'],
+ ['Timeline','Short plans follow recent momentum; long plans favor steady trends and strong companies.'],
+ ['Amount','Split into exact dollar amounts that add up to what you enter.'],
+ ['Market conditions','The overall market trend and how much prices are swinging.'],
+ ['Historical performance','Price momentum over 1 to 12 months, trend lines and RSI.'],
+ ['Diversification','Caps per investment and industry, with more broad funds at lower risk.'],
+ ['News signals','Recent headlines make up about a third of each recommendation score.'],
+];
+const DATA:[string,string][]=[
+ ['Prices','Yahoo Finance, with up to 10 years of history, and live crypto prices from Binance.'],
+ ['Company data','Profit margins, revenue growth and price-to-earnings ratios.'],
+ ['News','Headlines for each stock from Yahoo Finance, plus BBC, The Guardian and CoinDesk.'],
+ ['Updates','Prices refresh every few minutes. Headline tone is judged by keywords, so it can misread a story.'],
+];
+const TERMS:[string,string][]=[
+ ['Stock','A small piece of one company.'],
+ ['ETF','A fund that holds many stocks or bonds at once.'],
+ ['Portfolio','Everything you own: investments plus cash.'],
+ ['Diversification','Spreading money across many investments to lower risk.'],
+ ['Volatility','How much a price swings up and down.'],
+ ['Profit / loss','How much more or less your investments are worth than what you put in.'],
+];
+
+function NewsPage(){
+ const live=useBinanceTicker('btcusdt'), t=live.ticker;
+ return <div className="rd-news-layout">
+  <div className="rd-news-main"><DeskNews/></div>
+  <aside className="rd-news-side" aria-label="Prices">
+   <section className="rd-card rd-btc" aria-label="Bitcoin live price">
+    <div className="rd-news-meta"><strong>BTC/USDT</strong><span>Binance</span><span className="rd-live-inline"><span className={`rd-live-dot${live.status==='live'?'':' off'}`} aria-hidden="true"/>{live.status==='live'?'Live':live.status==='connecting'?'Connecting…':'Reconnecting…'}</span></div>
+    <div className="rd-yahoo-price"><a href="https://www.tradingview.com/symbols/BTCUSDT/" target="_blank" rel="noopener noreferrer">{t?money(t.price):'—'}</a>{t&&<span className={t.changePct<0?'rd-negative':'rd-positive'}>{t.changePct>=0?'+':''}{t.changePct.toFixed(2)}% 24h</span>}</div>
+   </section>
+   <YahooQuotes/>
+  </aside>
+ </div>;
+}
+
+function InfoPage(){
+ return <div className="rd-info">
+  <div className="rd-info-grid">
+   <section className="rd-info-card"><h2>How InvestIQ Works</h2><p>InvestIQ combines what you tell it — amount, timeline and risk level — with live prices, years of price history and the latest news.</p><p>Its AI analyzes that data to recommend investments and manage a portfolio within your limits.</p></section>
+   <section className="rd-info-card"><h2>Data &amp; Analysis</h2><ul className="rd-info-list">{DATA.map(([k,v])=><li key={k}><strong>{k}:</strong> {v}</li>)}</ul></section>
+  </div>
+  <section className="rd-info-card"><h2>How AI Makes Decisions</h2><ul className="rd-info-list rd-info-factors">{FACTORS.map(([k,v])=><li key={k}><strong>{k}</strong><span>{v}</span></li>)}</ul></section>
+  <section className="rd-info-card"><h2>Risk Limits by Level</h2><p>Investor AI checks these limits every 5 minutes. Stocks trade during US market hours; crypto trades 24/7.</p>
+   <div className="rd-table-scroll"><table className="rd-ptable rd-rules"><thead><tr><th>Rule</th><th>Low</th><th>Medium</th><th>High</th></tr></thead><tbody>{RULES.map(([rule,...v])=><tr key={rule}><td>{rule}</td>{v.map((x,i)=><td key={i}>{x}</td>)}</tr>)}</tbody></table></div>
+  </section>
+  <div className="rd-info-grid">
+   <section className="rd-info-card warn"><h2>Understanding Risk</h2><p>All investing involves risk, and you can lose money. AI recommendations are based on past data and cannot guarantee profit.</p></section>
+   <section className="rd-info-card"><h2>Important Disclaimer</h2><p>InvestIQ provides educational and analytical insights, not financial advice. Investor AI runs a practice portfolio and never places real orders. Always make your own financial decisions.</p></section>
+  </div>
+  <section className="rd-info-card"><h2>Words to Know</h2><div className="rd-glossary"><dl>{TERMS.map(([k,v])=><div key={k} className="rd-term"><dt>{k}</dt><dd>{v}</dd></div>)}</dl></div></section>
+ </div>;
+}
+
 export default function ResearchDeskPage(){
  const [params,setParams]=useSearchParams();
  const redirect=useNavigate();
- const section=nav.some(n=>n.key===params.get('view'))?params.get('view')!:'overview';
- const setSection=(key:string)=>setParams(key==='overview'?{}:{view:key});
- const live=useBinanceTicker('btcusdt');
- const [mode,setModeState]=useState<'fake'|'real'>(()=>localStorage.getItem('rd-money-mode')==='real'?'real':'fake');
- const setMode=(m:'fake'|'real')=>{localStorage.setItem('rd-money-mode',m);setModeState(m);};
- const [homeTab,setHomeTabState]=useState<HomeTab>(()=>{const t=localStorage.getItem('rd-home-tab');return t==='guide'||t==='detail'?t:null;});
- const setHomeTab=(t:HomeTab)=>{localStorage.setItem('rd-home-tab',t??'');setHomeTabState(t);};
- const [research,setResearch]=useState<Research|null>(null),[paper,setPaper]=useState<Paper|null>(null),[selected,setSelected]=useState(0),[busy,setBusy]=useState(false),[error,setError]=useState(''),[chart,setChart]=useState('paper'),[range,setRange]=useState('1M'),[showGraph,setShowGraph]=useState(false),[capital,setCapital]=useState(''),[risk,setRisk]=useState(''),[horizon,setHorizon]=useState('');
- async function load(){try{const {data}=await api.get('/research');setResearch(data.research);setPaper(data.paper);setError('');}catch{setError('The desk could not be loaded. Check that the local service is running.');}}
- useEffect(()=>{void load();const timer=setInterval(()=>void load(),60000);return()=>clearInterval(timer);},[]);
- useEffect(()=>{let active=true;const refresh=async()=>{try{const {data}=await api.post('/research/paper/check');if(active)setPaper(data);}catch{/* keep the last quote visible */}};void refresh();const timer=setInterval(()=>void refresh(),30000);return()=>{active=false;clearInterval(timer);};},[]);
- // "Live" chart range: one point per second of paper equity marked to the Binance tick, last 10 minutes.
- const [liveCurve,setLiveCurve]=useState<{time:string;equity:number}[]>([]);
- useEffect(()=>{const t=live.ticker;if(!paper||!t)return;const eq=paper.position?paper.cash+paper.position.qty*t.price:paper.equity;
-  setLiveCurve(c=>c.length&&Date.parse(c[c.length-1].time)>t.eventTime-1000?c:[...c,{time:new Date(t.eventTime).toISOString(),equity:eq}].slice(-600));},[live.ticker,paper]);
- async function control(action:string){setBusy(true);setError('');try{const {data}=await api.post(action==='check'?'/research/paper/check':'/research/paper/control',action==='check'?{}:{action});setPaper(data);}catch{setError('The paper-account action failed. Refresh and try again.');}finally{setBusy(false);}}
- function navigate(key:string){setSection(key);}
- async function savePlan(){setBusy(true);setError('');try{const body={...(capital?{capital:Number(capital)}:{}),...(risk?{risk_pct:Number(risk)}:{}),...(horizon?{horizon_months:Number(horizon)}:{})};const {data}=await api.post('/research/paper/plan',body);setPaper(data);setCapital('');setRisk('');setHorizon('');}catch(e:any){setError(e?.response?.data?.detail||'The paper plan could not be saved.');}finally{setBusy(false);}}
-
- const v=research?.validations[selected],isValidation=chart==='validation'&&section!=='overview'; // Home stays on the paper account
- const shownRange=isValidation&&range==='Live'?'1M':range; // backtests have no live view
- const liveView=shownRange==='Live';
- const history=isValidation?v?.curve??[]:liveView?liveCurve:paper?.equity_history??[];
- const days:Record<string,number>={'1D':1,'1W':7,'1M':30,'3M':91,'6M':183,'1Y':365};
- const last=history.length?Date.parse(history[history.length-1].time):0;
- const start=shownRange==='YTD'?Date.UTC(new Date(last).getUTCFullYear(),0,1):days[shownRange]?last-days[shownRange]*86400000:-Infinity;
- const curve=history.filter(x=>Date.parse(x.time)>=start);
- // Display-only mark-to-market on the live Binance tick (same formula as desk/paper.py); trading decisions stay server-side.
- const price=live.ticker?.price??paper?.price??null;
- const markedLive=!!(paper?.position&&live.ticker);
- const equity=paper?(paper.position&&price?paper.cash+paper.position.qty*price:paper.equity):0;
- const pnl=paper?equity-10000:0;
- const drawdown=paper?Math.max(0,(1-equity/Math.max(paper.peak_equity,equity))*100):0;
- const dailyLoss=paper?.periods.day?Math.max(0,(1-equity/paper.periods.day.base)*100):0;
- const exposure=paper?.position&&price?paper.position.qty*price/equity*100:0;
- return <div className="research-desk"><aside className="rd-sidebar"><Link to="/" className="rd-brand"><TrendingUp size={21}/>InvestIQ<span>LAB</span></Link><nav aria-label="Research desk">{nav.map(n=><button key={n.key} aria-label={n.label} title={n.label} onClick={()=>void navigate(n.key)} className={section===n.key?'active':''}><n.icon size={18}/><span>{n.label}</span></button>)}</nav><div className="rd-sidebar-mode"><span>Practice bot</span><strong>{paper?.enabled?'On':'Off'}</strong><button className="rd-stop" disabled={busy||!paper?.enabled} onClick={()=>void control('pause')}><CircleStop size={15}/>Turn bot off</button></div><div className="rd-sidebar-bottom"><span className="rd-tiny-dot"/> Local research workspace</div></aside>
- <div className="rd-workspace"><header className="rd-header"><div><h1>{nav.find(n=>n.key===section)?.label}</h1><div className="rd-segment rd-money-mode" role="group" aria-label="Money mode"><button className={mode==='fake'?'selected':''} aria-pressed={mode==='fake'} onClick={()=>setMode('fake')}>Fake money</button><button className={mode==='real'?'selected':''} aria-pressed={mode==='real'} onClick={()=>setMode('real')}>Real money</button></div>{mode==='fake'&&<span className={`rd-status ${paper?.enabled&&!paper?.error?'on':''}`}><i/>{paper?.error?'Can’t get prices':paper?.enabled?'Practice bot on':'Practice bot off'}</span>}</div><div className="rd-header-actions"><button title="Refresh desk" aria-label="Refresh desk" disabled={busy} onClick={()=>void load()}><RefreshCw size={18}/></button><button title="Sign out" aria-label="Sign out" onClick={()=>{logout();redirect('/login');}}><LogOut size={18}/></button><span className="rd-avatar" title="Your isolated paper account">IQ</span></div></header>
- {error&&<div className="rd-error" role="alert">{error}<button onClick={()=>void load()}>Retry</button></div>}
- {!research||!paper?<div className="rd-loading">Loading your research desk…</div>:<>
- <div className="rd-content"><main className="rd-main">
- {section==='overview'&&<BeginnerGuide paperEnabled={paper.enabled} research={research} tab={homeTab} onTab={setHomeTab}/>}
- {mode==='real'&&(section==='overview'||section==='autopilot')&&<RealMoneyGuide onPractice={()=>{setMode('fake');setSection('autopilot');}}/>}
- {mode==='fake'&&(section==='overview'||section==='autopilot')&&<><div className="rd-equity-heading"><div><p className="rd-muted">{isValidation?'Validation equity':markedLive?'Paper portfolio value · live':'Paper portfolio value'}</p><div className="rd-equity-value"><strong>{money(isValidation?(v?.curve.at(-1)?.equity??10000):equity)}</strong><span className="rd-currency">USDT</span><span className={(isValidation?(v?.metrics.net_return??0):pnl)<0?'rd-negative':'rd-positive'}>{isValidation?pct(v?.metrics.net_return??0):`${pnl>=0?'+':''}${money(pnl)} (${pct(pnl/10000)})`}</span></div></div>{section!=='overview'&&<div className="rd-segment" aria-label="Chart source"><button className={!isValidation?'selected':''} onClick={()=>setChart('paper')}>Paper</button><button className={isValidation?'selected':''} onClick={()=>setChart('validation')}>Backtest</button></div>}</div>
- {isValidation&&<label className="rd-select-label">Tested candidate<select aria-label="Tested candidate" value={selected} onChange={e=>setSelected(Number(e.target.value))}>{research.validations.map((x,i)=><option key={x.key} value={i}>{x.name} · {x.candidate.hours}h · {x.candidate.fast}/{x.candidate.slow}</option>)}</select></label>}
- {(section!=='overview'||showGraph)&&<div className="rd-chart">{curve.length>=2?<ResponsiveContainer width="100%" height="100%"><LineChart data={curve} margin={{top:25,right:5,bottom:5,left:5}}><XAxis dataKey="time" hide/><YAxis hide domain={['auto','auto']}/><Tooltip labelFormatter={x=>String(x).slice(0,liveView?19:16).replace('T',' ')} formatter={x=>[`${money(Number(x))} USDT`,'Equity']} contentStyle={{background:'#20211f',border:'1px solid #393b36',borderRadius:8,color:'#edeee9'}}/><ReferenceLine y={10000} stroke="#60635c" strokeDasharray="5 5"/><Line type="linear" dataKey="equity" stroke="#53a986" dot={false} strokeWidth={2.5} isAnimationActive={!liveView}/></LineChart></ResponsiveContainer>:<div className="rd-empty-chart"><div className="rd-flat-line"/><div>{liveView?<><span>Collecting live prices…</span><p>The line builds every second from the live Bitcoin price.</p></>:<><span>{isValidation?'Not enough chart points in this range':paper.last_checked_at?'Your paper account is in cash':'Your paper account is ready'}</span><p>{isValidation?'Choose a longer range to view the sampled validation curve.':paper.last_checked_at?'The chart will build as hourly observations accumulate.':'Start monitoring to record real paper-account observations.'}</p></>}</div></div>}</div>}
- {(section!=='overview'||showGraph)&&<div className="rd-chart-footer"><div className="rd-ranges">{['Live','1D','1W','1M','3M','6M','1Y','YTD'].filter(x=>!(isValidation&&x==='Live')).map(x=><button key={x} className={shownRange===x?'active':''} title={x==='YTD'?'Year to date':undefined} onClick={()=>setRange(x)}>{x==='Live'&&<span className="rd-tiny-dot"/>} {x}</button>)}</div><span>{isValidation?'Dashed: cash benchmark':'Virtual funds · no live orders'}</span></div>}
- {section==='overview'&&<button className="rd-view-graph" onClick={()=>setShowGraph(v=>!v)}>{showGraph?'Hide graph':'View performance graph'}</button>}
- <p className="rd-risk-caption">Your paper-account limits</p><div className="rd-meters"><Meter label="Drawdown used" value={drawdown} limit={10} color="orange"/><Meter label="Daily loss" value={dailyLoss} limit={3}/><Meter label="Biggest position" value={exposure} limit={50} color="amber"/></div>
- {section==='overview'?<p className="rd-home-research">{research.passed_candidates===0?`We tested ${research.configurations_tested} strategies. None were good enough yet, so the bot is waiting in cash.`:`${research.passed_candidates} tested ${research.passed_candidates===1?'strategy':'strategies'} passed every safety check.`}<button onClick={()=>{setHomeTab('detail');window.scrollTo({top:0,behavior:'smooth'});}}>See how the bot was tested</button></p>:<div className="rd-research-strip"><div><span>Research coverage</span><strong>{research.configurations_tested} <small>configurations</small></strong></div><div><span>Validation</span><strong>{research.validated_candidates} <small>candidates</small></strong></div><div><span>Qualified</span><strong className="rd-amber">{research.passed_candidates} <small>strategies</small></strong></div></div>}
- {section==='autopilot'&&<section className="rd-detail"><h2>Set up your paper bot</h2><p>Choose your virtual money, risk, and timeframe. Then press <strong>Start paper bot</strong>. The bot checks the market for you and only acts when its safety checks agree.</p><p>You can pause it at any time. It uses virtual money only.</p><div className="rd-plan"><h3>Your simple plan</h3><p>This is a simulation. No real money or orders are used.</p><label>Virtual starting amount (USDT)<input value={capital} onChange={e=>setCapital(e.target.value)} placeholder={String(paper.plan.capital)} type="number" min="100" max="1000000"/></label><label>Risk per trade (%)<input value={risk} onChange={e=>setRisk(e.target.value)} placeholder={String(paper.plan.risk_pct)} type="number" min="0.05" max="0.5" step="0.05"/></label><label>How long to invest (months)<input value={horizon} onChange={e=>setHorizon(e.target.value)} placeholder={String(paper.plan.horizon_months)} type="number" min="1" max="120"/></label><button className="rd-primary" disabled={busy||!!paper.position} onClick={()=>void savePlan()}>Save my plan</button><p className="rd-news-note">Maximum risk is capped at 0.50% per trade. Horizon guides the plan display; it does not predict returns.</p></div></section>}
- </>}
- {section==='simulator'&&<Simulator price={price} passed={research.passed_candidates} />}
- {section==='limits'&&<section className="rd-detail"><p className="rd-eyebrow">Capital preservation</p><h2>Small risk. Explicit boundaries.</h2><div className="rd-facts"><div><span>Starting virtual balance</span><strong>10,000 USDT</strong></div><div><span>Planned risk per entry</span><strong>0.5% of equity</strong></div><div><span>Maximum BTC exposure</span><strong>50%</strong></div><div><span>Peak drawdown stop</span><strong>10% · latched</strong></div><div><span>Daily loss threshold</span><strong>3% · exits and blocks entries</strong></div><div><span>Fees / slippage per side</span><strong>0.10% / 0.05%</strong></div></div><p>Position sizing includes costs. Stops can fill worse after gaps. A paused bot blocks new entries while protective exits remain active. The drawdown stop requires review before restarting.</p></section>}
- {section==='markets'&&<section className="rd-detail"><p className="rd-eyebrow">Market scope</p><h2>Bitcoin / Tether</h2><div className="rd-market-quote"><strong>{live.ticker?money(live.ticker.price):paper.price?money(paper.price):'—'}</strong><span>USDT · Binance spot{live.ticker&&<> · <span className={live.ticker.changePct<0?'rd-negative':'rd-positive'}>{live.ticker.changePct>=0?'+':''}{live.ticker.changePct.toFixed(2)}% 24h</span></>}</span></div><p className="rd-live-note"><span className="rd-tiny-dot"/> {live.status==='live'?'Live price · streaming from Binance WebSocket':live.status==='connecting'?'Connecting to Binance WebSocket…':'Stream interrupted · reconnecting (showing last price)'}</p><a className="rd-primary rd-chart-link" href="https://www.tradingview.com/symbols/BTCUSDT/" target="_blank" rel="noopener noreferrer">View Bitcoin chart</a></section>}
- {section==='markets'&&<YahooQuotes />}
- {(section==='overview'||section==='markets')&&<DeskNews compact={section==='overview'} />}
- </main><aside className="rd-right"><BotStatusPanel paper={paper} passed={research.passed_candidates} tested={research.validated_candidates} exposure={exposure} busy={busy} onControl={a=>void control(a)}/>
-{section!=='overview'&&<section className="rd-watch"><h2>Research cadence</h2><p><span className="rd-tiny-dot"/> Hourly Codex task configured</p><span>Free public data · local models</span><span>Uses your existing Codex allowance</span></section>}</aside></div>
- {section!=='overview'&&<section className="rd-log"><div className="rd-log-heading"><h2>Validation results</h2><span>Six candidates · no strategy qualified</span></div><div className="rd-table-scroll"><table><thead><tr><th>Strategy</th><th>Return</th><th>Drawdown</th><th>Result</th></tr></thead><tbody>{research.validations.map((x,i)=><tr key={x.key} onClick={()=>{setSelected(i);setChart('validation');setSection('autopilot');}}><td><button className="rd-table-strategy" onClick={()=>{setSelected(i);setChart('validation');setSection('autopilot');}}>{x.name}</button></td><td className={x.metrics.net_return<0?'rd-negative':'rd-positive'}>{pct(x.metrics.net_return)}</td><td>{pct(x.metrics.max_drawdown)}</td><td><span className="rd-rejected">Not qualified</span></td></tr>)}</tbody></table></div></section>}
- {isValidation&&section==='autopilot'&&v&&<section className="rd-gates"><h2>{v.name}: qualification checks</h2><div>{Object.entries(v.gates).map(([k,pass])=><span key={k} className={pass?'pass':'fail'}>{pass?'✓':'×'} {k.replaceAll('_',' ')}</span>)}</div><p>Validation: Jan 2025–Mar 2026. Base fee 0.10% and slippage 0.05% per side; stress tests double both. Reused validation is exploratory.</p></section>}
- <footer className="rd-footer"><span>Historical simulations, not real account returns. No live order connection.</span><span>Research updated {new Date(research.generated_at).toLocaleDateString()}</span></footer></>}
- </div></div>;
+ const raw=params.get('view')??'home';
+ const page=NAV.find(n=>n.key===(LEGACY[raw]??raw))??NAV[0];
+ const go=(key:string)=>{setParams(key==='home'?{}:{view:key});window.scrollTo({top:0});};
+ const next=NAV.find(n=>n.key===NEXT[page.key]);
+ return <div className="research-desk">
+  <aside className="rd-sidebar">
+   <Link to="/" className="rd-brand"><TrendingUp size={21}/>InvestIQ<span>LAB</span></Link>
+   <nav aria-label="Main">{NAV.map(n=><button key={n.key} aria-label={n.label} title={n.label} aria-current={page.key===n.key?'page':undefined} onClick={()=>go(n.key)} className={page.key===n.key?'active':''}><n.icon size={18}/><span>{n.label}</span></button>)}</nav>
+   <button className="rd-signout" onClick={()=>{logout();redirect('/login');}} aria-label="Sign out" title="Sign out"><LogOut size={18}/><span>Sign out</span></button>
+  </aside>
+  <div className="rd-workspace">
+   <main className="rd-main">
+    {page.key==='home'?<>
+     <div className="rd-hero"><h1>Welcome to InvestIQ</h1><p>Make smarter investing decisions with AI, market data and recommendations built around you.</p></div>
+     <p className="rd-eyebrow">Get started in 3 steps</p>
+     <BeginnerGuide onGo={go}/>
+    </>:<div className="rd-page-head"><h1>{page.label}</h1><p>{page.sub}</p></div>}
+    {page.key==='investor-ai'&&<PortfolioBot/>}
+    {page.key==='recommendations'&&<Simulator/>}
+    {page.key==='news'&&<NewsPage/>}
+    {page.key==='info'&&<InfoPage/>}
+    {next&&<div className="rd-next"><button className="rd-secondary" onClick={()=>go(next.key)}>Next: {next.label} <ArrowRight size={16} aria-hidden="true"/></button></div>}
+   </main>
+   <footer className="rd-footer"><span>Educational insights, not financial advice. Investing involves risk.</span></footer>
+  </div>
+ </div>;
 }

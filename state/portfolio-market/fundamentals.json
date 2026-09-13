@@ -1,0 +1,225 @@
+{
+  "epoch": 1789257359.347827,
+  "data": {
+    "SPY": {
+      "trailingPE": 24.69397,
+      "forwardPE": null,
+      "profitMargins": null,
+      "revenueGrowth": null,
+      "earningsGrowth": null,
+      "dividendYield": 0.98,
+      "beta": null,
+      "marketCap": null,
+      "netExpenseRatio": 0.0945
+    },
+    "QQQ": {
+      "trailingPE": 29.137512,
+      "forwardPE": null,
+      "profitMargins": null,
+      "revenueGrowth": null,
+      "earningsGrowth": null,
+      "dividendYield": 0.42,
+      "beta": null,
+      "marketCap": null,
+      "netExpenseRatio": 0.18
+    },
+    "VTI": {
+      "trailingPE": 25.251175,
+      "forwardPE": null,
+      "profitMargins": null,
+      "revenueGrowth": null,
+      "earningsGrowth": null,
+      "dividendYield": 1.03,
+      "beta": null,
+      "marketCap": null,
+      "netExpenseRatio": 0.03
+    },
+    "IWM": {
+      "trailingPE": 17.00732,
+      "forwardPE": null,
+      "profitMargins": null,
+      "revenueGrowth": null,
+      "earningsGrowth": null,
+      "dividendYield": 0.9,
+      "beta": null,
+      "marketCap": null,
+      "netExpenseRatio": 0.19
+    },
+    "VXUS": {
+      "trailingPE": 18.17367,
+      "forwardPE": null,
+      "profitMargins": null,
+      "revenueGrowth": null,
+      "earningsGrowth": null,
+      "dividendYield": 2.51,
+      "beta": null,
+      "marketCap": null,
+      "netExpenseRatio": 0.05
+    },
+    "XLV": {
+      "trailingPE": 29.543749,
+      "forwardPE": null,
+      "profitMargins": null,
+      "revenueGrowth": null,
+      "earningsGrowth": null,
+      "dividendYield": 1.49,
+      "beta": null,
+      "marketCap": null,
+      "netExpenseRatio": 0.08
+    },
+    "XLF": {
+      "trailingPE": 16.2335,
+      "forwardPE": null,
+      "profitMargins": null,
+      "revenueGrowth": null,
+      "earningsGrowth": null,
+      "dividendYield": 1.4,
+      "beta": null,
+      "marketCap": null,
+      "netExpenseRatio": 0.08
+    },
+    "XLE": {
+      "trailingPE": 18.070423,
+      "forwardPE": null,
+      "profitMargins": null,
+      "revenueGrowth": null,
+      "earningsGrowth": null,
+      "dividendYield": 2.37,
+      "beta": null,
+      "marketCap": null,
+      "netExpenseRatio": 0.08
+    },
+    "TLT": {
+      "trailingPE": null,
+      "forwardPE": -4043.5002,
+      "profitMargins": null,
+      "revenueGrowth": null,
+      "earningsGrowth": null,
+      "dividendYield": 4.73,
+      "beta": null,
+      "marketCap": null,
+      "netExpenseRatio": 0.15
+    },
+    "BND": {
+      "trailingPE": null,
+      "forwardPE": null,
+      "profitMargins": null,
+      "revenueGrowth": null,
+      "earningsGrowth": null,
+      "dividendYield": 4.04,
+      "beta": null,
+      "marketCap": null,
+      "netExpenseRatio": 0.03
+    },
+    "GLD": {
+      "trailingPE": null,
+      "forwardPE": null,
+      "profitMargins": null,
+      "revenueGrowth": null,
+      "earningsGrowth": null,
+      "dividendYield": 0.0,
+      "beta": null,
+      "marketCap": null,
+      "netExpenseRatio": 0.4
+    },
+    "AAPL": {
+      "trailingPE": 38.148106,
+      "forwardPE": 34.703167,
+      "profitMargins": 0.27618998,
+      "revenueGrowth": 0.164,
+      "earningsGrowth": 0.287,
+      "dividendYield": 0.33,
+      "beta": 1.085,
+      "marketCap": 4849207869440.0,
+      "netExpenseRatio": null
+    },
+    "MSFT": {
+      "trailingPE": 27.62709,
+      "forwardPE": 21.025343,
+      "profitMargins": 0.40305,
+      "revenueGrowth": 0.177,
+      "earningsGrowth": 0.317,
+      "dividendYield": 0.73,
+      "beta": 1.108,
+      "marketCap": 3680323239936.0,
+      "netExpenseRatio": null
+    },
+    "NVDA": {
+      "trailingPE": 27.631645,
+      "forwardPE": 14.022135,
+      "profitMargins": 0.63663,
+      "revenueGrowth": 1.059,
+      "earningsGrowth": 1.278,
+      "dividendYield": 0.46,
+      "beta": 2.217,
+      "marketCap": 5271048421376.0,
+      "netExpenseRatio": null
+    },
+    "AMZN": {
+      "trailingPE": 20.658085,
+      "forwardPE": 24.681154,
+      "profitMargins": 0.1744,
+      "revenueGrowth": 0.196,
+      "earningsGrowth": 2.423,
+      "dividendYield": null,
+      "beta": 1.443,
+      "marketCap": 2769709432832.0,
+      "netExpenseRatio": null
+    },
+    "GOOGL": {
+      "trailingPE": 16.975927,
+      "forwardPE": 22.758093,
+      "profitMargins": 0.54771,
+      "revenueGrowth": 0.242,
+      "earningsGrowth": 2.94,
+      "dividendYield": 0.26,
+      "beta": 1.225,
+      "marketCap": 4139833098240.0,
+      "netExpenseRatio": null
+    },
+    "JPM": {
+      "trailingPE": 15.269182,
+      "forwardPE": 14.256049,
+      "profitMargins": 0.34921002,
+      "revenueGrowth": 0.304,
+      "earningsGrowth": 0.469,
+      "dividendYield": 1.68,
+      "beta": 0.975,
+      "marketCap": 946925731840.0,
+      "netExpenseRatio": null
+    },
+    "JNJ": {
+      "trailingPE": 30.774042,
+      "forwardPE": 21.331726,
+      "profitMargins": 0.21482,
+      "revenueGrowth": 0.066,
+      "earningsGrowth": -0.009,
+      "dividendYield": 2.02,
+      "beta": 0.235,
+      "marketCap": 640020840448.0,
+      "netExpenseRatio": null
+    },
+    "KO": {
+      "trailingPE": 26.513514,
+      "forwardPE": 25.037006,
+      "profitMargins": 0.28558,
+      "revenueGrowth": 0.067,
+      "earningsGrowth": 0.169,
+      "dividendYield": 2.4,
+      "beta": 0.342,
+      "marketCap": 379872051200.0,
+      "netExpenseRatio": null
+    },
+    "PG": {
+      "trailingPE": 21.944109,
+      "forwardPE": 19.631613,
+      "profitMargins": 0.18437,
+      "revenueGrowth": 0.015,
+      "earningsGrowth": -0.155,
+      "dividendYield": 3.05,
+      "beta": 0.377,
+      "marketCap": 337414619136.0,
+      "netExpenseRatio": null
+    }
+  }
+}

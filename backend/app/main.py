@@ -43,11 +43,15 @@ async def lifespan(app: FastAPI):
         await conn.run_sync(Base.metadata.create_all)
     logger.info("Database tables ready")
 
-    # Prime the quote cache on startup.
-    try:
-        await refresh_quotes()
-    except Exception as exc:
-        logger.warning("Initial quote fetch failed: %s", exc)
+    # Prime the quote cache in the background: its yfinance fallback has no timeout, and a slow or rate-limited
+    # Yahoo must not stop the server from starting (it previously blocked startup for minutes).
+    async def _prime_quotes():
+        try:
+            await refresh_quotes()
+        except Exception as exc:
+            logger.warning("Initial quote fetch failed: %s", exc)
+    import asyncio
+    asyncio.get_running_loop().create_task(_prime_quotes())
 
     # Refresh quotes every 60 seconds (hard constraint: no faster than 60s).
     scheduler.add_job(refresh_quotes, "interval", seconds=60, id="quote_refresh")
@@ -59,8 +63,10 @@ async def lifespan(app: FastAPI):
         minute=0,
         id="price_refresh",
     )
-    from .routers.research import monitor_accounts
-    scheduler.add_job(monitor_accounts, "interval", seconds=60, id="paper_monitor", max_instances=1, coalesce=True)
+    from .routers.research import monitor_live_boards, monitor_portfolios
+    # Simulated portfolios, around the clock: value updates every minute, loss limits, and a full review every 15 minutes.
+    scheduler.add_job(monitor_portfolios, "interval", seconds=60, id="portfolio_monitor", max_instances=1, coalesce=True)
+    scheduler.add_job(monitor_live_boards, "interval", seconds=60, id="live_top_rated", max_instances=1, coalesce=True)
     scheduler.start()
     logger.info("Scheduler started (quote: 60s, price: daily 06:00 UTC)")
 

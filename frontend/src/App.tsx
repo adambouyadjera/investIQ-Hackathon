@@ -29,9 +29,9 @@ export default function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/dashboard" element={<Navigate to="/" replace />} />
         <Route path="/research" element={<Navigate to="/" replace />} />
-        <Route path="/agent" element={<Navigate to="/?view=autopilot" replace />} />
-        <Route path="/risk" element={<Navigate to="/?view=limits" replace />} />
-        <Route path="/scenarios" element={<Navigate to="/?view=journal" replace />} />
+        <Route path="/agent" element={<Navigate to="/?view=investor-ai" replace />} />
+        <Route path="/risk" element={<Navigate to="/?view=info" replace />} />
+        <Route path="/scenarios" element={<Navigate to="/" replace />} />
         <Route path="/compare" element={<Navigate to="/" replace />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

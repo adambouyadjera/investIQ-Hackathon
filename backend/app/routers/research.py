@@ -3,9 +3,9 @@ import asyncio
 import json
 from typing import Literal
 from uuid import UUID
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from fastapi.responses import PlainTextResponse, StreamingResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from .auth import get_current_user
 from desk.paper import ROOT, PaperDesk, snapshot, locked, atomic_json
 
@@ -16,7 +16,7 @@ def account(user):
     return PaperDesk(ACCOUNTS / str(UUID(str(user.id))))
 
 def public_state(state):
-    return {**state, "events": state["events"][-50:]}
+    return {**state, "events": state["events"][-50:], "trades": state.get("trades", [])[-200:]}
 
 def run_cycle(desk):
     try:
@@ -58,12 +58,136 @@ async def control(body: Control, user=Depends(get_current_user)):
 async def check(user=Depends(get_current_user)):
     return public_state(await asyncio.to_thread(run_cycle, account(user)))
 
+class Setup(BaseModel):
+    capital: float
+    risk_pct: float | None = None
+
+@router.post('/paper/setup')
+async def setup(body: Setup, user=Depends(get_current_user)):
+    desk = account(user)
+    try:
+        await asyncio.to_thread(desk.setup, body.capital, body.risk_pct)
+    except ValueError as exc:
+        raise HTTPException(409, str(exc))
+    return public_state(await asyncio.to_thread(run_cycle, desk))
+
 @router.post('/paper/plan')
 async def plan(body: Plan, user=Depends(get_current_user)):
     try:
         return public_state(await asyncio.to_thread(account(user).configure, body.capital, body.risk_pct, body.horizon_months))
     except ValueError as exc:
         raise HTTPException(409, str(exc))
+
+def portfolio_bot(user):
+    from desk.portfolio_bot import PortfolioBot
+    return PortfolioBot(ACCOUNTS / str(UUID(str(user.id))))
+
+class PortfolioSetup(BaseModel):
+    amount: float
+    risk: Literal["low", "medium", "high"]
+    months: int = Field(ge=1, le=120)
+
+class PortfolioSettings(PortfolioSetup):
+    confirm: bool = False
+    reset: bool = False
+
+class PortfolioBackfill(PortfolioSetup):
+    days: int = Field(default=30, ge=5, le=90)
+    confirm: bool = False
+
+class PortfolioControl(BaseModel):
+    action: Literal["pause", "resume", "review"]
+
+MARKET_UNAVAILABLE = "Market data is unavailable right now. Nothing was traded; try again in a few minutes."
+
+@router.get("/portfolio")
+async def portfolio(user=Depends(get_current_user)):
+    return await asyncio.to_thread(portfolio_bot(user).refresh, False)
+
+@router.post("/portfolio/setup")
+async def portfolio_setup(body: PortfolioSetup, user=Depends(get_current_user)):
+    try:
+        return await asyncio.to_thread(portfolio_bot(user).setup, body.amount, body.risk, body.months)
+    except ValueError as exc:
+        raise HTTPException(409, str(exc))
+    except RuntimeError:
+        raise HTTPException(503, MARKET_UNAVAILABLE)
+
+@router.post("/portfolio/backfill")
+async def portfolio_backfill(body: PortfolioBackfill, user=Depends(get_current_user)):
+    from desk.portfolio_bot import ConfirmationRequired
+    try:
+        return await asyncio.to_thread(portfolio_bot(user).backfill, body.amount, body.risk, body.months, body.days, body.confirm)
+    except ConfirmationRequired as exc:
+        raise HTTPException(409, {"code": "confirmation_required", "message": str(exc)})
+    except ValueError as exc:
+        raise HTTPException(409, str(exc))
+    except RuntimeError:
+        raise HTTPException(503, MARKET_UNAVAILABLE)
+
+@router.post("/portfolio/settings")
+async def portfolio_settings(body: PortfolioSettings, user=Depends(get_current_user)):
+    from desk.portfolio_bot import ConfirmationRequired
+    try:
+        return await asyncio.to_thread(portfolio_bot(user).update_settings, body.amount, body.risk, body.months, body.confirm, body.reset)
+    except ConfirmationRequired as exc:
+        raise HTTPException(409, {"code": "confirmation_required", "message": str(exc)})
+    except ValueError as exc:
+        raise HTTPException(409, str(exc))
+    except RuntimeError:
+        raise HTTPException(503, MARKET_UNAVAILABLE)
+
+@router.post("/portfolio/control")
+async def portfolio_control(body: PortfolioControl, user=Depends(get_current_user)):
+    try:
+        return await asyncio.to_thread(portfolio_bot(user).control, body.action)
+    except ValueError as exc:
+        raise HTTPException(409, str(exc))
+    except RuntimeError:
+        raise HTTPException(503, MARKET_UNAVAILABLE)
+
+class SimulatorPlan(BaseModel):
+    initial: float = Field(ge=0, le=1_000_000)
+    monthly: float = Field(ge=0, le=100_000)
+    risk: Literal["low", "medium", "high"]
+    months: int = Field(ge=1, le=120)
+    include: list[str] = Field(default_factory=list, max_length=5)
+
+@router.post("/simulator/plan")
+async def simulator_plan(body: SimulatorPlan, user=Depends(get_current_user)):
+    from desk.simulator import build_plan
+    try:
+        return await asyncio.to_thread(lambda: build_plan(body.initial, body.monthly, body.risk, body.months, include=body.include))
+    except ValueError as exc:
+        raise HTTPException(409, str(exc))
+    except RuntimeError:
+        raise HTTPException(503, MARKET_UNAVAILABLE)
+
+@router.get("/simulator/leaderboard")
+async def simulator_leaderboard(risk: Literal["low", "medium", "high"] = "medium", months: int = Query(12, ge=1, le=120), user=Depends(get_current_user)):
+    from desk.simulator import watch
+    try:
+        return await asyncio.to_thread(watch, risk, months)
+    except ValueError as exc:
+        raise HTTPException(409, str(exc))
+    except RuntimeError:
+        raise HTTPException(503, MARKET_UNAVAILABLE)
+
+async def monitor_live_boards():
+    import logging
+    from desk.simulator import live_tick
+    try:
+        await asyncio.to_thread(live_tick)
+    except Exception as exc:  # market data outages must not stop the scheduler
+        logging.getLogger(__name__).warning("Live Top-rated update failed: %s", exc)
+
+async def monitor_portfolios():
+    from desk.portfolio_bot import PortfolioBot
+    for path in ACCOUNTS.glob("*/portfolio.json"):
+        try:
+            await asyncio.to_thread(PortfolioBot(path.parent).refresh)
+        except (RuntimeError, OSError, ValueError):
+            continue
 
 @router.get("/journal", response_class=PlainTextResponse)
 async def journal(user=Depends(get_current_user)):
